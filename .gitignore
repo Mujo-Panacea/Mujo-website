@@ -1,0 +1,22 @@
+# Node / Astro (Phase 2+)
+node_modules/
+dist/
+.astro/
+.env
+.env.local
+.env.*.local
+
+# Netlify
+.netlify/
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo

@@ -12,13 +12,13 @@
 - [x] Capture site chrome (nav, footer, analytics, partner logos, embedded widgets) from live homepage
 - [x] Produce `sitemap.md` — per-URL disposition table drafted
 - [x] Capture confirmed decisions from open questions into `requirements.md`
-- [ ] **Gerard: review `sitemap.md` and answer the 5 Decisions Requested items at the bottom**
-- [ ] Confirm which of the 7 currently-listed team members are still involved
-- [ ] Confirm status of the "My Portal" footer link (live / legacy / dead)
-- [ ] Per-post disposition for the 42 posts (`docs/audit/posts-disposition.md`) — deferred until top-level cuts approved
+- [x] Gerard: 5 REVIEW-row dispositions resolved (2026-07-31 — `/research` KILL, `/consulting` KILL, `/faqs` KEEP with rewrite, `/book-free-taster` KILL, `/technology/dashboard-and-predictive-model` KEEP with language change)
+- [x] Team confirmed 2026-07-31 — current team: Gerard Kool (CEO), Michael Sasserini (CFO), Andre Santos (CMO), Jeff McBride carrying over; other six previous bios KILL
+- [x] "My Portal" confirmed 2026-07-31 — clinician dashboard, retain link, final destination URL TBD
+- [x] Approach to old news / blog confirmed 2026-07-31 — keep all 42 posts for rebuild; cull is a post-launch task
 - [ ] Media library inventory (162 items) — deferred to Phase 3, driven by which pages need which assets
 
-**Exit criteria:** `sitemap.md` approved and the five REVIEW rows resolved to concrete dispositions.
+**Exit criteria:** `sitemap.md` approved. All five REVIEW rows + three follow-up decisions resolved. ✔ Achieved 2026-07-31.
 
 ## Phase 2 — Framework & Repo Setup
 
@@ -26,10 +26,12 @@
 
 ### Deferred decisions to settle at this phase
 
-- [ ] Framework — Astro (recommended) vs Next.js
-- [ ] Content authoring — Markdown-in-repo (recommended) vs headless CMS (Sanity / Contentful)
-- [ ] Staging subdomain name — `beta.` / `staging.` / `new.` (recommended `beta.`)
-- [ ] Manual-rebuild feature list — Netlify Forms for contact vs a third-party form; cookie banner library; analytics choice (see Phase 4)
+- [x] Framework — **Astro** (confirmed 2026-07-31)
+- [x] Content authoring — **Markdown / MDX in repo** (confirmed 2026-07-31)
+- [x] Staging subdomain — **`beta.mujofitness.com`** (confirmed 2026-07-31)
+- [x] Contact form backend — **Netlify Forms** (confirmed 2026-07-31)
+- [ ] Cookie banner library — deferred to Phase 4 with analytics choice
+- [ ] Analytics — deferred to Phase 4 (UA-73890747-1 is dead; effectively starting fresh)
 
 ### Repo scaffold
 
@@ -50,19 +52,22 @@
 
 ### Pages (in dependency order — home last so it can link to the finished pages)
 
-- [ ] `/technology` (absorbing `/technology/devices`, dropping `/technology/dashboard-and-predictive-model` pending confirmation)
+- [ ] `/technology` (absorbing `/technology/devices`)
+- [ ] `/technology/dashboard-and-predictive-model` (retained as future-offering page — language must be "we are building" not "we have"; align with Mujo 2.0 roadmap; regulatory review)
 - [ ] `/treatments` (landing page listing conditions)
 - [ ] `/treatments/frozen-shoulder` (merged from `/research/conditions/frozen-shoulder-contracture-syndrome`)
 - [ ] `/treatments/shoulder-impingement` (merged from `/research/conditions/shoulder-impingement-syndrome`)
 - [ ] `/treatments/shoulder-instability`
 - [ ] `/treatments/upper-back-and-neck-pain` (merged from `/research/conditions/upper-back-and-neck-pain`)
+- [ ] `/faqs` (rewrite — every answer should nudge unresolved cases to `/contact`)
 - [ ] `/about`
-- [ ] `/about/team` (consolidated bios from the seven individual team pages)
-- [ ] `/consulting` (if REVIEW resolves to KEEP)
+- [ ] `/about/team` — new team page featuring Gerard Kool (CEO), Michael Sasserini (CFO), Andre Santos (CMO), Jeff McBride. Bios and photos to be supplied by Gerard. Six other legacy bios KILL with 301 to `/about/team`.
+- [ ] Confirm the clinician "My Portal" destination URL (or agree on a "coming soon" holding page) before cutover — do not ship a broken link
 - [ ] `/contact` (with form → gerard@panacea.ws, subject to launch-time swap to dedicated inbox)
 - [ ] `/privacy` (legal review)
 - [ ] `/terms` (legal review)
 - [ ] `/` (home page rewrite — depends on all pages above so it can link correctly)
+- [ ] Strip any residual "book a free taster" CTAs from copy on other pages — the offer has been retired
 
 ### Content indexes
 
@@ -72,11 +77,10 @@
 
 ### Blog / post migration
 
-- [ ] Draft per-post disposition (`docs/audit/posts-disposition.md`) — every post gets KEEP / KILL / REWRITE
-- [ ] Migrate KEEP posts to MDX in `/src/content/posts/` (or framework equivalent)
+- [ ] Migrate all 42 posts to MDX in `/src/content/posts/` (or framework equivalent) — full carry-over, cull deferred to post-launch
 - [ ] Assign each migrated post to its content index (evidence / blog / news)
-- [ ] Add reading-time and updated-date metadata to blog posts that carry old dates
-- [ ] Add "Archive" flag on any 2013–2018 post preserved — set expectations for the reader
+- [ ] Show original publication dates prominently — do not silently rebadge 2015 content as 2026
+- [ ] Consolidate categories: retire the four zero-post categories (`Conditions`, `Device Development`, `Research`); retain News, Blog, Evidence plus topical tags (Frozen Shoulder, Shoulder Impingement, Shoulder Pain, Tips, Guest Interviews)
 
 ### Assets
 
@@ -171,3 +175,9 @@ Tracked here so nothing gets lost, but not delivered as part of the initial cuto
 Add dated entries here as decisions are made. Keep the entry short — the reasoning belongs in [requirements.md](requirements.md) or [sitemap.md](sitemap.md).
 
 * **2026-07-31** — Phase 1 kickoff. Confirmed: brand lifts from live site pending kit; analytics — audit found UA is dead so effectively starting fresh, choice deferred to Phase 4; partners retained; contact goes to gerard@panacea.ws until a dedicated inbox is ready.
+* **2026-07-31** — Five sitemap REVIEW rows resolved. `/research` → KILL (301 to `/evidence`). `/consulting` → KILL (service no longer offered). `/faqs` → KEEP, rewrite with contact-us language throughout. `/book-free-taster` → KILL (offer retired — also strip residual CTAs from other pages). `/technology/dashboard-and-predictive-model` → KEEP, but language shifts from "we have" to "we are building"; a future offering aligned with the Mujo 2.0 roadmap, regulatory review required to avoid overstatement.
+* **2026-07-31** — Team confirmed. Current team is Gerard Kool (CEO), Michael Sasserini (CFO), Andre Santos (CMO), and Jeff McBride carrying over from the previous seven bios. The other six bios are KILL with 301 to `/about/team`. Bios and photos to be supplied by Gerard at Phase 3.
+* **2026-07-31** — "My Portal" clarified: clinician dashboard access, either live or planned. Retain the link on the new site; final destination URL to be confirmed at Phase 3 / 4, with a placeholder acceptable if the dashboard is not yet ready by cutover. Do not ship a broken link.
+* **2026-07-31** — Posts approach confirmed: keep all 42 posts for the rebuild. Reshape the site around the sitemap first, then cull dated news and refresh the blog post-launch. Per-post disposition file deferred as post-launch cleanup.
+* **2026-07-31** — Phase 1 audit closed. Ready to begin Phase 2 (framework + repo setup) on Gerard's go.
+* **2026-07-31** — Phase 2 stack locked in: Astro + Markdown/MDX in-repo + Netlify hosting + Netlify Forms for contact + `beta.mujofitness.com` staging. No new accounts required beyond the Netlify account already opened. Cookie banner + analytics choices remain deferred to Phase 4.

@@ -46,14 +46,17 @@ Patients are **not** a primary audience — they interact with the device via th
 
 The following four decisions are deferred until after the Phase 1 audit produces a real content inventory. Locking them in now would be premature.
 
-| Decision | Options | Deferred until |
+| Decision | Chosen | Confirmed |
 | --- | --- | --- |
-| Site framework | Astro (leaning) vs Next.js | After Phase 1 audit |
-| Content authoring | Markdown-in-repo (leaning) vs headless CMS (Sanity / Contentful) | After Phase 1 audit |
-| Staging subdomain | `beta.` / `staging.` / `new.` | Before Phase 4 setup |
-| Manual-rebuild features | Booking forms, cookie banner, GA, embedded tools, media | Called out per-item in the audit |
+| Site framework | **Astro** | 2026-07-31 |
+| Content authoring | **Markdown / MDX in repo** | 2026-07-31 |
+| Staging subdomain | **`beta.mujofitness.com`** | 2026-07-31 |
+| Hosting | **Netlify** (free tier) | 2026-07-31 |
+| Contact form backend | **Netlify Forms** | 2026-07-31 |
+| Analytics | Deferred to Phase 4 (UA is dead; nothing to carry over) | — |
+| Cookie banner | Deferred to Phase 4 (implementation follows analytics choice) | — |
 
-The default recommendation, absent contradicting evidence from the audit, is **Astro + Markdown-in-repo + `beta.mujofitness.com` staging + Netlify Forms for the contact form**.
+Rationale: Astro is a better fit than Next.js for a mostly-static marketing / content site — smaller output, better default performance, first-class MDX support, and no runtime overhead where none is needed. Markdown-in-repo removes the need for a CMS account and keeps content versioned alongside code; a headless CMS can be layered in later if non-technical editing becomes a need. Netlify Forms means no third-party service to sign up for, and the free tier (100 submissions / month) comfortably covers expected enquiry volume.
 
 ## Key Numbers
 

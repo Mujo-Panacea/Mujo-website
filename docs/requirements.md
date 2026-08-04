@@ -58,6 +58,8 @@ The following four decisions are deferred until after the Phase 1 audit produces
 
 Rationale: Astro is a better fit than Next.js for a mostly-static marketing / content site — smaller output, better default performance, first-class MDX support, and no runtime overhead where none is needed. Markdown-in-repo removes the need for a CMS account and keeps content versioned alongside code; a headless CMS can be layered in later if non-technical editing becomes a need. Netlify Forms means no third-party service to sign up for, and the free tier (100 submissions / month) comfortably covers expected enquiry volume.
 
+**"Add a CMS later" path.** If browser-based editing becomes a need later, the intended layer is [Decap CMS](https://decapcms.org/) — an open-source admin UI that commits directly to the git repo (i.e. content stays as Markdown-in-repo, editors just get a WYSIWYG). Cost: £0. Auth via GitHub OAuth (free) or Netlify Identity (free up to 5 users). Migrating to a full external CMS such as Sanity or Contentful is a separate, later decision and is not on the near-term roadmap.
+
 ## Key Numbers
 
 | Item | Detail |

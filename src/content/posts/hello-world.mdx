@@ -1,0 +1,25 @@
+---
+title: "Scaffold post — Anatomy of the shoulder"
+description: "A seed post used to prove the content pipeline end-to-end. Replaced during Phase 3 by the real WordPress migration."
+publishedDate: 2026-08-04
+category: blog
+tags: ["anatomy", "scaffold"]
+author: "MUJO Panacea"
+archived: false
+---
+
+This is a **seed post** used to confirm the Astro Content Collections pipeline works end-to-end before Phase 3 migration begins.
+
+## Why this exists
+
+Phase 2 of the rebuild needs to prove the following work together:
+
+- MDX content authoring with frontmatter validation via Zod
+- Dynamic routing under `/blog/[...slug]`
+- Layout, header, footer, and typography rendering as expected
+
+Real posts arrive in [Phase 3](/blog/) once the WordPress migration script is written.
+
+## What replaces this
+
+The 42 posts pulled from mujofitness.com's REST API become MDX files under `src/content/posts/`, with the frontmatter fields defined in `src/content.config.ts`.

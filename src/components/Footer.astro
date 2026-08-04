@@ -1,0 +1,155 @@
+---
+const year = new Date().getFullYear();
+
+const footerLinks = [
+  {
+    heading: 'Product',
+    items: [
+      { label: 'Treatments', href: '/treatments/' },
+      { label: 'Technology', href: '/technology/' },
+      { label: 'Dashboard & Predictive Model', href: '/technology/dashboard-and-predictive-model/' },
+    ],
+  },
+  {
+    heading: 'Evidence & Content',
+    items: [
+      { label: 'Evidence', href: '/evidence/' },
+      { label: 'Blog', href: '/blog/' },
+      { label: 'News', href: '/news/' },
+    ],
+  },
+  {
+    heading: 'Company',
+    items: [
+      { label: 'About', href: '/about/' },
+      { label: 'Team', href: '/about/team/' },
+      { label: 'FAQs', href: '/faqs/' },
+      { label: 'Contact', href: '/contact/' },
+    ],
+  },
+  {
+    heading: 'Legal',
+    items: [
+      { label: 'Privacy', href: '/privacy/' },
+      { label: 'Terms', href: '/terms/' },
+    ],
+  },
+];
+---
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <div class="brand-mark">MUJO</div>
+      <p class="tagline">Clinically grounded shoulder rehabilitation.</p>
+      <a href="/portal/" class="portal-link">Clinician Portal &rarr;</a>
+    </div>
+    <div class="footer-columns">
+      {footerLinks.map((col) => (
+        <div class="footer-col">
+          <h2>{col.heading}</h2>
+          <ul>
+            {col.items.map((item) => (
+              <li><a href={item.href}>{item.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="container footer-legal">
+    <small>&copy; {year} MUJO Panacea Ltd. All rights reserved.</small>
+    <small>Registered in England &amp; Wales.</small>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-brand-strong);
+    color: #dfe6ec;
+    padding-block: var(--space-16) var(--space-8);
+    margin-top: var(--space-24);
+  }
+
+  .site-footer a {
+    color: #dfe6ec;
+    text-decoration: none;
+  }
+
+  .site-footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .footer-inner {
+    display: grid;
+    gap: var(--space-12);
+    grid-template-columns: 1fr;
+  }
+
+  .brand-mark {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: #fff;
+    margin-bottom: var(--space-2);
+  }
+
+  .tagline {
+    color: #b6c1cc;
+    margin-bottom: var(--space-4);
+  }
+
+  .portal-link {
+    display: inline-block;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+  }
+
+  .footer-columns {
+    display: grid;
+    gap: var(--space-8);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-col h2 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #b6c1cc;
+    margin-bottom: var(--space-3);
+  }
+
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .footer-legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    justify-content: space-between;
+    padding-top: var(--space-8);
+    margin-top: var(--space-12);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #b6c1cc;
+  }
+
+  @media (min-width: 700px) {
+    .footer-columns {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (min-width: 960px) {
+    .footer-inner {
+      grid-template-columns: 1fr 3fr;
+    }
+  }
+</style>

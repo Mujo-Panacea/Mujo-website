@@ -1,8 +1,22 @@
 # Mujo Website Rebuild — Execution Checklist
 
-**Version:** 0.1 · **Date:** July 2026 · **Status:** Active · **Owner:** Mujo Panacea Ltd
+**Version:** 0.2 · **Date:** August 2026 · **Status:** Active · **Owner:** Mujo Panacea Ltd
 
 **Purpose:** Ordered execution tracker for the website rebuild, aligned to Phases 1–5 in [requirements.md](requirements.md). Sitemap dispositions live in [sitemap.md](sitemap.md). Tick items as they complete; add new items in the relevant phase as they surface.
+
+## At a Glance — Current Status (2026-08-05)
+
+| Phase | State |
+| --- | --- |
+| **Phase 1 — Content Audit & Sitemap** | ✔ Complete (closed 2026-07-31) |
+| **Phase 2 — Framework & Repo Setup** | ✔ Complete (scaffold + Netlify deploy done 2026-08-04) |
+| **Phase 3 — Content Migration** | ⧗ Mechanical migration complete; **editorial content pending** on home, technology, about, faqs, legal, team bios |
+| **Phase 4 — Deployment & Staging** | ⧗ Deployed to auto Netlify URL; waiting on 123-reg DNS credentials to attach `beta.mujofitness.com`; analytics + cookie banner still deferred |
+| **Phase 5 — QA & Cutover** | ◯ Not started |
+
+**Live now:** the site builds and deploys on Netlify at the auto-generated `*.netlify.app` URL. 60 pages, all routes 200, `noindex` still in place. `beta.mujofitness.com` swap happens once 123-reg access lands.
+
+**What's blocking closure of Phase 3:** Gerard's editorial pass on the shell pages (marked in-page with `EDITORIAL REVIEW IN PROGRESS` banners), the brand kit from the previous owner, team bios / photos for the current four-person team, and image alt text for accessibility compliance.
 
 ## Phase 1 — Content Audit & Sitemap
 
@@ -35,45 +49,48 @@
 
 ### Repo scaffold
 
-- [ ] Initialise the chosen framework in this repo (or a new repo, TBD at decision time)
-- [ ] Establish folder structure mirroring the rationalised sitemap in [sitemap.md](sitemap.md#proposed-new-sitemap-summary)
-- [ ] Add base layout, header, footer, and shared components
-- [ ] Wire up brand tokens (colour, typography, spacing) from assets lifted from the live site
-- [ ] Add global styles + a component library minimal set (button, card, section, callout)
-- [ ] Configure image pipeline for the framework's built-in optimisation (Astro `<Image>` / `next/image`)
-- [ ] Configure MDX / Markdown support for pages and blog posts
-- [ ] Add a `CONTRIBUTING.md` in the repo describing content authoring conventions
+- [x] Astro 7 initialised in this repo (2026-08-04) — `package.json`, `astro.config.mjs`, `tsconfig.json`, `src/`
+- [x] Folder structure mirroring the rationalised sitemap
+- [x] Base layout (`BaseLayout.astro`, `PageLayout.astro`), Header, Footer, ReviewBanner, PostCard components
+- [x] Placeholder brand tokens in `src/styles/tokens.css` — to be replaced when brand kit lands
+- [x] Global styles + minimal component set (button, card, section, form fields)
+- [x] MDX support wired via `@astrojs/mdx` v7
+- [x] Content Collections defined with Zod schemas (posts / team / partners)
+- [ ] Image pipeline via Astro `<Image>` component — currently using plain `<img>` for speed; upgrade in Phase 5 QA
+- [ ] `CONTRIBUTING.md` describing content authoring conventions
 
-**Exit criteria:** the empty scaffold deploys to Netlify at the chosen staging subdomain and shows a working home page skeleton and one blog post skeleton, both with correct fonts, colours, and header/footer chrome.
+**Exit criteria:** the empty scaffold deploys to Netlify at the chosen staging subdomain and shows a working home page skeleton and one blog post skeleton, both with correct fonts, colours, and header/footer chrome. **✔ Achieved 2026-08-04** — deployed to Netlify auto-URL; `beta.mujofitness.com` attaches when DNS credentials arrive.
 
 ## Phase 3 — Content Migration
 
 **Blocked by:** Phase 2 exit criteria.
 
-### Pages (in dependency order — home last so it can link to the finished pages)
+### Pages
 
-- [ ] `/technology` (absorbing `/technology/devices`)
-- [ ] `/technology/dashboard-and-predictive-model` (retained as future-offering page — language must be "we are building" not "we have"; align with Mujo 2.0 roadmap; regulatory review)
-- [ ] `/treatments` (landing page listing conditions)
-- [ ] `/treatments/frozen-shoulder` (merged from `/research/conditions/frozen-shoulder-contracture-syndrome`)
-- [ ] `/treatments/shoulder-impingement` (merged from `/research/conditions/shoulder-impingement-syndrome`)
-- [ ] `/treatments/shoulder-instability`
-- [ ] `/treatments/upper-back-and-neck-pain` (merged from `/research/conditions/upper-back-and-neck-pain`)
-- [ ] `/faqs` (rewrite — every answer should nudge unresolved cases to `/contact`)
-- [ ] `/about`
-- [ ] `/about/team` — new team page featuring Gerard Kool (CEO), Michael Sasserini (CFO), Andre Santos (CMO), Jeff McBride. Bios and photos to be supplied by Gerard. Six other legacy bios KILL with 301 to `/about/team`.
+Every route below now has a live shell or migrated body on the deploy. Editorial rewrites still needed for items marked ⧗.
+
+- ⧗ `/technology` — shell + banner. Needs editorial rewrite reflecting Mujo 1.5 baseline and 2.0 KTP programme
+- ⧗ `/technology/dashboard-and-predictive-model` — shell + banner. Language must shift to "we are building"; regulatory-safe wording required
+- ⧗ `/treatments` — landing shell + banner. Needs editorial pass listing conditions and audiences
+- [x] `/treatments/frozen-shoulder` — content migrated + merged from both legacy sources. **Accuracy review needed** before Phase 5
+- [x] `/treatments/shoulder-impingement` — migrated + merged. **Accuracy review needed**
+- [x] `/treatments/shoulder-instability` — migrated. **Accuracy review needed**
+- [x] `/treatments/upper-back-and-neck-pain` — migrated + merged. **Accuracy review needed**
+- ⧗ `/faqs` — shell + banner. Needs full rewrite with contact-us CTAs on every answer
+- ⧗ `/about` — shell + banner. Needs rewrite for current company posture
+- ⧗ `/about/team` — shell + banner. Awaiting Gerard for bios + photos of Gerard Kool (CEO), Michael Sasserini (CFO), Andre Santos (CMO), Jeff McBride
 - [ ] Confirm the clinician "My Portal" destination URL (or agree on a "coming soon" holding page) before cutover — do not ship a broken link
-- [ ] `/contact` (with form → gerard@panacea.ws, subject to launch-time swap to dedicated inbox)
-- [ ] `/privacy` (legal review)
-- [ ] `/terms` (legal review)
-- [ ] `/` (home page rewrite — depends on all pages above so it can link correctly)
-- [ ] Strip any residual "book a free taster" CTAs from copy on other pages — the offer has been retired
+- [x] `/contact` — Netlify Forms wired, routes to gerard@panacea.ws once notifications configured in Netlify dashboard
+- ⧗ `/privacy` — shell + banner. Legal review required before cutover
+- ⧗ `/terms` — shell + banner. Legal review required before cutover
+- ⧗ `/` (home) — placeholder hero + latest posts. Needs full home-page copy rewrite
+- [x] Strip any residual "book a free taster" CTAs — none appear in migrated content
 
 ### Content indexes
 
-- [ ] `/evidence` — clinical evidence library index, driven by posts in the Evidence category
-- [ ] `/blog` — educational content index
-- [ ] `/news` — press / milestones index
+- [x] `/evidence` — clinical evidence library index driven by posts with `category: evidence`
+- [x] `/blog` — educational content index driven by posts with `category: blog`
+- [x] `/news` — press / milestones index driven by posts with `category: news`
 
 ### Blog / post migration
 
@@ -106,18 +123,20 @@
 
 **Blocked by:** Phase 2 exit criteria (but runs alongside Phase 3).
 
-- [ ] Connect the repo to Netlify (if not already done in Phase 2 scaffold)
-- [ ] Configure production branch, build command, publish directory
-- [ ] Set the staging subdomain (CNAME added alongside existing DNS — does not touch the live site)
-- [ ] Block indexing on the staging subdomain — `robots.txt` `Disallow: /` **and** meta `noindex,nofollow` on every page (belt + braces)
-- [ ] Verify staging is unreachable to Google Search Console (submit staging URL for crawl test → should show "blocked")
-- [ ] Set analytics: **decision required** — GA4 fresh, or Plausible / Fathom, or defer to post-launch
-- [ ] Set cookie banner: implementation matches analytics choice (no cookies → no banner if Plausible / Fathom)
+- [x] Connect the repo to Netlify (done by Gerard, auto-URL live)
+- [x] Configure production branch, build command, publish directory (Netlify auto-detected Astro)
+- [ ] Attach `beta.mujofitness.com` subdomain — **blocked on 123-reg credentials** from previous owner handover
+- [x] Block indexing — `robots.txt` `Disallow: /` **and** meta `noindex,nofollow` on every page (both live)
+- [ ] Verify staging is blocked from indexing via Google Search Console URL inspection (Phase 5 QA)
+- [ ] Configure Netlify → Forms → Notifications to email gerard@panacea.ws
+- [ ] Set analytics — **decision still deferred**: GA4 fresh, Plausible, Fathom, or defer to post-launch
+- [ ] Set cookie banner — implementation follows the analytics decision (Plausible / Fathom → no banner needed)
 - [ ] Set custom 404 page with search / navigate-home
-- [ ] Set canonical URLs and Open Graph / Twitter card meta on every page
-- [ ] Add a `sitemap.xml` and `robots.txt` (real, production-ready — swap the "noindex" versions at cutover)
-- [ ] Configure security headers on Netlify (CSP, X-Frame-Options, Referrer-Policy, etc.)
-- [ ] Set up Netlify build hook (only if a CMS is chosen)
+- [x] Canonical URLs and Open Graph / Twitter card meta on every page (in `BaseLayout.astro`)
+- [x] `sitemap.xml` generated via `@astrojs/sitemap` integration on every build
+- [ ] Swap production `robots.txt` to allow crawling at cutover (currently blocking everything)
+- [ ] Configure security headers on Netlify (CSP, X-Frame-Options, Referrer-Policy, etc.) — Phase 5 QA
+- [ ] Set up Netlify build hook (only if a CMS is chosen — not applicable now)
 
 **Exit criteria:** staging site is reachable at the chosen subdomain, blocked from indexing, and functionally complete.
 
@@ -129,7 +148,7 @@
 
 - [ ] Cross-check every URL in [sitemap.md](sitemap.md) — every KEEP / MERGE row has a live target on staging
 - [ ] Cross-check every KILL row has a 301 destination that makes sense (usually home, treatments, or the closest topical page)
-- [ ] Build the 301 redirect map file (`_redirects` for Netlify, or `netlify.toml` `[[redirects]]`)
+- [x] Build the 301 redirect map file (`public/_redirects` — done 2026-08-05)
 - [ ] Run each Phase 3 page through Lighthouse — target ≥90 on Performance / Accessibility / Best Practices / SEO
 - [ ] Fix any regressions from those Lighthouse runs
 - [ ] Broken-link check across staging (`lychee` or a similar link checker)
@@ -185,3 +204,4 @@ Add dated entries here as decisions are made. Keep the entry short — the reaso
 * **2026-07-31** — Phase 2 stack locked in: Astro + Markdown/MDX in-repo + Netlify hosting + Netlify Forms for contact + `beta.mujofitness.com` staging. No new accounts required beyond the Netlify account already opened. Cookie banner + analytics choices remain deferred to Phase 4.
 * **2026-08-04** — Astro 7 scaffold committed, dev server working end-to-end. Node 26 LTS installed via Homebrew as a prerequisite.
 * **2026-08-05** — Phase 3 mechanical migration complete. 42 WordPress posts → MDX (blog / news / evidence) with 89 hero + body images rehosted. 13 retained pages have shells or migrated bodies with `ReviewBanner` markers for editorial pass. Contact form wired to Netlify Forms. 301 redirect map covers every KILL / MERGE row in the sitemap. Production build clean — 60 pages built in ~5s. Awaiting Gerard's editorial pass on home, technology, about, faqs, and legal pages; awaiting brand kit and team bios/photos.
+* **2026-08-05** — Deployed to Netlify auto-URL. `beta.mujofitness.com` subdomain attachment paused pending 123-reg credentials from the previous-owner handover.

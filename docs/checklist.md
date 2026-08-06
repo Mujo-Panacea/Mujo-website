@@ -4,19 +4,21 @@
 
 **Purpose:** Ordered execution tracker for the website rebuild, aligned to Phases 1–5 in [requirements.md](requirements.md). Sitemap dispositions live in [sitemap.md](sitemap.md). Tick items as they complete; add new items in the relevant phase as they surface.
 
-## At a Glance — Current Status (2026-08-05)
+## At a Glance — Current Status (2026-08-06)
 
 | Phase | State |
 | --- | --- |
 | **Phase 1 — Content Audit & Sitemap** | ✔ Complete (closed 2026-07-31) |
 | **Phase 2 — Framework & Repo Setup** | ✔ Complete (scaffold + Netlify deploy done 2026-08-04) |
-| **Phase 3 — Content Migration** | ⧗ Mechanical migration complete; **editorial content pending** on home, technology, about, faqs, legal, team bios |
+| **Phase 3 — Content Migration + IA Reshape** | ⧗ Mechanical + IA reshape complete; **editorial content pending** on home, technology, about, athletes, investors, faqs, legal, team bios |
 | **Phase 4 — Deployment & Staging** | ⧗ Deployed to auto Netlify URL; waiting on 123-reg DNS credentials to attach `beta.mujofitness.com`; analytics + cookie banner still deferred |
 | **Phase 5 — QA & Cutover** | ◯ Not started |
 
-**Live now:** the site builds and deploys on Netlify at the auto-generated `*.netlify.app` URL. 60 pages, all routes 200, `noindex` still in place. `beta.mujofitness.com` swap happens once 123-reg access lands.
+**2026-08-06 IA reshape.** Gerard pushed for a sharper positioning: clinicians and investors first, athletes as a marketing surface, evidence and case studies consolidated. Top nav is now Technology · Evidence · For Athletes · Investors · About · Contact. `/blog` and `/news` retired; `/treatments` landing retired (condition pages kept for SEO). New `/athletes` and `/investors` pages exist as shells. 42 migrated posts became 18 evidence + 6 resources + 18 killed with 301s.
 
-**What's blocking closure of Phase 3:** Gerard's editorial pass on the shell pages (marked in-page with `EDITORIAL REVIEW IN PROGRESS` banners), the brand kit from the previous owner, team bios / photos for the current four-person team, and image alt text for accessibility compliance.
+**Live now:** the site builds and deploys on Netlify at the auto-generated `*.netlify.app` URL. 42 pages after reshape, all routes 200, `noindex` still in place. `beta.mujofitness.com` swap happens once 123-reg access lands.
+
+**What's blocking closure of Phase 3:** Gerard's editorial pass on the shell pages (marked in-page with `EDITORIAL REVIEW IN PROGRESS` banners) — home, technology, about, **athletes**, **investors**, faqs, legal, team bios; the brand kit from the previous owner; team bios / photos for the current four-person team; and image alt text for accessibility compliance.
 
 ## Phase 1 — Content Audit & Sitemap
 
@@ -205,3 +207,4 @@ Add dated entries here as decisions are made. Keep the entry short — the reaso
 * **2026-08-04** — Astro 7 scaffold committed, dev server working end-to-end. Node 26 LTS installed via Homebrew as a prerequisite.
 * **2026-08-05** — Phase 3 mechanical migration complete. 42 WordPress posts → MDX (blog / news / evidence) with 89 hero + body images rehosted. 13 retained pages have shells or migrated bodies with `ReviewBanner` markers for editorial pass. Contact form wired to Netlify Forms. 301 redirect map covers every KILL / MERGE row in the sitemap. Production build clean — 60 pages built in ~5s. Awaiting Gerard's editorial pass on home, technology, about, faqs, and legal pages; awaiting brand kit and team bios/photos.
 * **2026-08-05** — Deployed to Netlify auto-URL. `beta.mujofitness.com` subdomain attachment paused pending 123-reg credentials from the previous-owner handover.
+* **2026-08-06** — **IA reshape.** New nav: Technology · Evidence · For Athletes · Investors · About · Contact. Retired `/blog`, `/news`, `/treatments` landing; condition pages under `/treatments/` retained for SEO. New `/athletes`, `/investors`, `/resources` pages as shells. 42 migrated posts → 18 evidence + 6 resources + 18 killed. `_redirects` rewritten to cover every URL move: surviving news → `/evidence/`, surviving educational blog → `/resources/`, sports-derivative → `/athletes/`, others to nearest section landing. Production build clean at 42 pages in ~3s.

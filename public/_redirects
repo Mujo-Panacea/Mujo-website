@@ -1,21 +1,22 @@
-# Netlify redirects — 301s from legacy WordPress URLs to their new homes.
+# Netlify redirects — 301s from legacy WordPress and prior-plan URLs
+# to their new homes under the 2026-08-06 IA.
 #
-# Sources: docs/sitemap.md (KILL and MERGE rows).
-# One 301 per legacy URL. Trailing-slash form matches WordPress default;
-# Netlify normalises to canonical form automatically.
+# Sources: docs/sitemap.md (KILL and MERGE rows) + 2026-08-06 IA reshape.
+# One 301 per legacy URL, then wildcard fallbacks at the end.
 
 # ─── Pages KILLed outright ───────────────────────────────────────────────
 /audience                                    /                          301
 /audience/employers                          /                          301
-/audience/health-care-providers              /treatments/               301
-/audience/individuals                        /treatments/               301
+/audience/health-care-providers              /technology/               301
+/audience/individuals                        /technology/               301
 /consulting                                  /                          301
 /why-us                                      /                          301
 /book-free-taster                            /contact/                  301
 /booking                                     /contact/                  301
+/treatments                                  /technology/               301
 /treatments/enquire                          /contact/                  301
 /research                                    /evidence/                 301
-/research/conditions                         /treatments/               301
+/research/conditions                         /evidence/                 301
 /research/device-development                 /technology/               301
 
 # ─── Legacy team-member bios (six of seven KILLed; Jeff carries over) ────
@@ -40,22 +41,87 @@
 /research/conditions/shoulder-impingement-syndrome          /treatments/shoulder-impingement/  301
 /research/conditions/upper-back-and-neck-pain               /treatments/upper-back-and-neck-pain/ 301
 
-# ─── Legacy URL forms ────────────────────────────────────────────────────
-# WordPress used /home for the home page — redirect to root.
+# ─── Home page slug ──────────────────────────────────────────────────────
 /home                                        /                          301
-# Legal page paths
+
+# ─── Legal page paths ────────────────────────────────────────────────────
 /privacy-policy                              /privacy/                  301
 /terms-and-conditions                        /terms/                    301
 
-# ─── WordPress dated blog/news/evidence URLs → new flat paths ────────────
-# WP used /blog/YYYY/MM/DD/slug/. Netlify wildcard captures the slug and
-# routes to the new category-based path. Category is inferred from the
-# original path segment.
-/blog/*/*/*/:slug                            /blog/:slug/               301
-/news/*/*/*/:slug                            /news/:slug/               301
-/evidence/*/*/*/:slug                        /evidence/:slug/           301
+# ─── 2026-08-06 IA reshape ────────────────────────────────────────────────
+# `/blog` and `/news` are gone as sections. Survivors moved to
+# `/evidence` (case studies + milestones) and `/resources` (educational).
 
-# ─── Miscellaneous ───────────────────────────────────────────────────────
-# Trailing slash normalisation Netlify handles by default. No entry needed.
+# Surviving news → evidence (per-slug, so killed news falls through to wildcard)
+/news/tried-and-tested                                                    /evidence/tried-and-tested/                                                    301
+/news/positive-results-reported-clinical-study                            /evidence/positive-results-reported-clinical-study/                            301
+/news/upper-quadrant-motor-control-training-mujo-reduce-fall-rates-elderly /evidence/upper-quadrant-motor-control-training-mujo-reduce-fall-rates-elderly/ 301
+/news/coventry-university-evaluates-mujo-devices                          /evidence/coventry-university-evaluates-mujo-devices/                          301
+/news/clinical-feasibility-study-begins-royal-national-orthopaedic-hospital /evidence/clinical-feasibility-study-begins-royal-national-orthopaedic-hospital/ 301
+/news/circlebedfordshire-msk-service-joins-innovate-uk-study              /evidence/circlebedfordshire-msk-service-joins-innovate-uk-study/              301
+/news/installation-royal-national-orthopaedic-hospital-nhs-trust          /evidence/installation-royal-national-orthopaedic-hospital-nhs-trust/          301
+/news/installation-english-institute-sport-lilleshall-national-sports-centre /evidence/installation-english-institute-sport-lilleshall-national-sports-centre/ 301
+/news/english-institute-of-sport-adopts-mujo                              /evidence/english-institute-of-sport-adopts-mujo/                              301
+/news/wasps-rugby-use-mujo-system-for-post-op-shoulder-dislocation-rehabilitation /evidence/wasps-rugby-use-mujo-system-for-post-op-shoulder-dislocation-rehabilitation/ 301
+/news/mujo-supplies-leading-dutch-workmans-compensation-training-centre-artros-healthfocus /evidence/mujo-supplies-leading-dutch-workmans-compensation-training-centre-artros-healthfocus/ 301
+/news/mujo-available-gb-weightlifting-affiliate-iron-club-vauxhall        /evidence/mujo-available-gb-weightlifting-affiliate-iron-club-vauxhall/        301
+/news/ratio-medical-training-ag-appointed-swiss-representative            /evidence/ratio-medical-training-ag-appointed-swiss-representative/            301
+/news/mujo-wins-innovate-uk-funding-digital-health-connected-hospital     /evidence/mujo-wins-innovate-uk-funding-digital-health-connected-hospital/     301
+/news/mujo-showcases-connected-devices-innovate-2015-registers-mhra       /evidence/mujo-showcases-connected-devices-innovate-2015-registers-mhra/       301
+/news/mujo-patent-approved-united-states                                  /evidence/mujo-patent-approved-united-states/                                  301
+/news/mujo-achieves-fda-listing-for-its-connected-health-devices          /evidence/mujo-achieves-fda-listing-for-its-connected-health-devices/          301
+
+# Surviving blog posts
+/blog/mujo-interviews-dr-niels-peek-university-manchester                 /evidence/mujo-interviews-dr-niels-peek-university-manchester/                 301
+/blog/anatomy-of-the-shoulder-part-1                                      /resources/anatomy-of-the-shoulder-part-1/                                      301
+/blog/anatomy-of-the-shoulder-part-2-ligaments-and-capsules               /resources/anatomy-of-the-shoulder-part-2-ligaments-and-capsules/               301
+/blog/anatomy-of-the-shoulder-part-3-muscular-structures                  /resources/anatomy-of-the-shoulder-part-3-muscular-structures/                  301
+/blog/7-home-based-exercises-to-help-a-frozen-shoulder                    /resources/7-home-based-exercises-to-help-a-frozen-shoulder/                    301
+/blog/mujo-exercises-for-shoulder-impingement-syndrome                    /resources/mujo-exercises-for-shoulder-impingement-syndrome/                    301
+/blog/5-exercises-to-help-correct-shoulder-impingement-syndrome           /resources/5-exercises-to-help-correct-shoulder-impingement-syndrome/           301
+
+# Killed sports-derivative blog posts → /athletes/
+/blog/nfl-shoulder-injuries-and-mujo                                      /athletes/                                                                     301
+/blog/baseball-gird-shoulder-other-injuries-mujo                          /athletes/                                                                     301
+
+# ─── WordPress-dated URLs (both /news/YYYY/MM/DD/slug and /blog/YYYY/MM/DD/slug) ──
+# Netlify matches literal path segments before wildcards, so we can't fold these
+# with the entries above. Use the same slug-level 301s but with the dated prefix.
+
+# Surviving news, dated form
+/news/*/*/*/tried-and-tested                                                    /evidence/tried-and-tested/                                                    301
+/news/*/*/*/positive-results-reported-clinical-study                            /evidence/positive-results-reported-clinical-study/                            301
+/news/*/*/*/upper-quadrant-motor-control-training-mujo-reduce-fall-rates-elderly /evidence/upper-quadrant-motor-control-training-mujo-reduce-fall-rates-elderly/ 301
+/news/*/*/*/coventry-university-evaluates-mujo-devices                          /evidence/coventry-university-evaluates-mujo-devices/                          301
+/news/*/*/*/clinical-feasibility-study-begins-royal-national-orthopaedic-hospital /evidence/clinical-feasibility-study-begins-royal-national-orthopaedic-hospital/ 301
+/news/*/*/*/circlebedfordshire-msk-service-joins-innovate-uk-study              /evidence/circlebedfordshire-msk-service-joins-innovate-uk-study/              301
+/news/*/*/*/installation-royal-national-orthopaedic-hospital-nhs-trust          /evidence/installation-royal-national-orthopaedic-hospital-nhs-trust/          301
+/news/*/*/*/installation-english-institute-sport-lilleshall-national-sports-centre /evidence/installation-english-institute-sport-lilleshall-national-sports-centre/ 301
+/news/*/*/*/english-institute-of-sport-adopts-mujo                              /evidence/english-institute-of-sport-adopts-mujo/                              301
+/news/*/*/*/wasps-rugby-use-mujo-system-for-post-op-shoulder-dislocation-rehabilitation /evidence/wasps-rugby-use-mujo-system-for-post-op-shoulder-dislocation-rehabilitation/ 301
+/news/*/*/*/mujo-supplies-leading-dutch-workmans-compensation-training-centre-artros-healthfocus /evidence/mujo-supplies-leading-dutch-workmans-compensation-training-centre-artros-healthfocus/ 301
+/news/*/*/*/mujo-available-gb-weightlifting-affiliate-iron-club-vauxhall        /evidence/mujo-available-gb-weightlifting-affiliate-iron-club-vauxhall/        301
+/news/*/*/*/ratio-medical-training-ag-appointed-swiss-representative            /evidence/ratio-medical-training-ag-appointed-swiss-representative/            301
+/news/*/*/*/mujo-wins-innovate-uk-funding-digital-health-connected-hospital     /evidence/mujo-wins-innovate-uk-funding-digital-health-connected-hospital/     301
+/news/*/*/*/mujo-showcases-connected-devices-innovate-2015-registers-mhra       /evidence/mujo-showcases-connected-devices-innovate-2015-registers-mhra/       301
+/news/*/*/*/mujo-patent-approved-united-states                                  /evidence/mujo-patent-approved-united-states/                                  301
+/news/*/*/*/mujo-achieves-fda-listing-for-its-connected-health-devices          /evidence/mujo-achieves-fda-listing-for-its-connected-health-devices/          301
+
+# Surviving blog, dated form
+/blog/*/*/*/mujo-interviews-dr-niels-peek-university-manchester                 /evidence/mujo-interviews-dr-niels-peek-university-manchester/                 301
+/blog/*/*/*/anatomy-of-the-shoulder-part-1                                      /resources/anatomy-of-the-shoulder-part-1/                                      301
+/blog/*/*/*/anatomy-of-the-shoulder-part-2-ligaments-and-capsules               /resources/anatomy-of-the-shoulder-part-2-ligaments-and-capsules/               301
+/blog/*/*/*/anatomy-of-the-shoulder-part-3-muscular-structures                  /resources/anatomy-of-the-shoulder-part-3-muscular-structures/                  301
+/blog/*/*/*/7-home-based-exercises-to-help-a-frozen-shoulder                    /resources/7-home-based-exercises-to-help-a-frozen-shoulder/                    301
+/blog/*/*/*/mujo-exercises-for-shoulder-impingement-syndrome                    /resources/mujo-exercises-for-shoulder-impingement-syndrome/                    301
+/blog/*/*/*/5-exercises-to-help-correct-shoulder-impingement-syndrome           /resources/5-exercises-to-help-correct-shoulder-impingement-syndrome/           301
+/blog/*/*/*/nfl-shoulder-injuries-and-mujo                                      /athletes/                                                                     301
+/blog/*/*/*/baseball-gird-shoulder-other-injuries-mujo                          /athletes/                                                                     301
+/evidence/*/*/*/:slug                                                           /evidence/:slug/                                                                301
+
+# ─── Wildcard fallbacks for any killed slug or unmapped URL under old sections ─
+# These fire only when no per-slug rule above matched.
+/blog/*                                      /athletes/                 301
+/news/*                                      /evidence/                 301
 
 # END

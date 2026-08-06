@@ -3,18 +3,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('posts', ({ data }) => data.category === 'news'))
+const posts = (await getCollection('posts', ({ data }) => data.category === 'resources'))
   .sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf());
 ---
-<BaseLayout title="News" description="Company milestones, product releases, and press mentions from MUJO Panacea.">
+<BaseLayout title="Resources" description="Educational articles about shoulder anatomy, rehabilitation, and injury prevention.">
   <section class="section container">
     <header>
-      <h1>News</h1>
-      <p>Company milestones, product releases, and press mentions. Historic entries reflect the state of MUJO at the time of publication.</p>
+      <h1>Resources</h1>
+      <p>Educational articles on shoulder anatomy, rehabilitation, and home-based exercises. Written by the MUJO team; older articles are marked archived and reflect the state of practice at the time of writing.</p>
     </header>
 
     {posts.length === 0 ? (
-      <p><em>No news items migrated yet.</em></p>
+      <p><em>No resources yet.</em></p>
     ) : (
       <ul class="post-grid">
         {posts.map((post) => (

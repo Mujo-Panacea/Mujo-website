@@ -8,7 +8,7 @@ const posts = defineCollection({
     description: z.string(),
     publishedDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    category: z.enum(['news', 'blog', 'evidence']),
+    category: z.enum(['evidence', 'resources']),
     tags: z.array(z.string()).default([]),
     author: z.string().default('MUJO Panacea'),
     heroImage: z.string().optional(),

@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts', ({ data }) => data.category === 'news');
+  const posts = await getCollection('posts', ({ data }) => data.category === 'resources');
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
@@ -17,7 +17,7 @@ const { Content } = await render(post);
   <article class="section container container-narrow">
     <header>
       <p class="eyebrow">
-        {post.data.category}
+        Resource
         {post.data.archived && <span class="archived-flag">Archived</span>}
       </p>
       <h1>{post.data.title}</h1>
@@ -26,6 +26,7 @@ const { Content } = await render(post);
         <time datetime={post.data.publishedDate.toISOString()}>
           {post.data.publishedDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
         </time>
+        &middot; {post.data.author}
       </p>
       {post.data.heroImage && (
         <img src={post.data.heroImage} alt="" class="hero-image" loading="eager" />

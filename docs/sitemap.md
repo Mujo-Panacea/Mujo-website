@@ -1,6 +1,19 @@
 # Mujo Website — Current Sitemap & Disposition
 
-**Version:** 0.1 · **Date:** July 2026 · **Status:** Draft for Review · **Owner:** Mujo Panacea Ltd
+**Version:** 0.3 · **Date:** August 2026 · **Status:** Active · **Owner:** Mujo Panacea Ltd
+
+## 2026-08-06 IA reshape
+
+After the mechanical migration, Gerard reviewed the shape and pushed for a sharper positioning: clinicians and investors first, athletes as a marketing surface, evidence and case studies consolidated, patient-facing "treatments" content demoted out of the top nav. The changes below are the current source of truth — older KEEP / MERGE rows in the tables below have been superseded where appropriate.
+
+**New top nav (6 items):** Technology · Evidence · For Athletes · Investors · About · Contact
+
+**Sections retired:** `/blog`, `/news`, `/treatments` (landing). `/faqs` demoted to footer.
+
+**New sections:** `/athletes`, `/investors`, `/resources` (footer link).
+
+**Posts reclassification:** the 42 migrated posts became 18 in `/evidence`, 6 in `/resources`, 18 killed. Killed items redirect to the nearest surviving section landing. Full disposition in the "Posts (42 total)" section below.
+
 
 **Purpose:** Phase 1 audit output. Every current URL on [mujofitness.com](https://mujofitness.com), captured via the WordPress REST API on 2026-07-31, with a proposed disposition and target path on the new site. This document, once approved, drives Phase 3 content migration and the 301-redirect map at Phase 5 cutover.
 
@@ -130,7 +143,64 @@ Bios and photos for the three new team members are a Phase 3 content deliverable
 | 428 | /research/conditions/shoulder-impingement-syndrome | 5699 | **MERGE** | `/treatments/shoulder-impingement` | Duplicate of `/treatments/shoulder-impingement`. Longest page on the site (5699w) — depth is here, not on the shorter Treatments version. |
 | 430 | /research/conditions/upper-back-and-neck-pain | 640 | **MERGE** | `/treatments/upper-back-and-neck-pain` | Slug clash with `/treatments/upper-back-and-neck-pain` — WP resolves by parent, but confuses users and search engines. Consolidate. |
 
-## Posts (42 total)
+## Posts (42 total — post 2026-08-06 reclassification)
+
+**Final split:** 18 → `/evidence/`, 6 → `/resources/`, 18 killed with 301 to nearest section landing.
+
+### KEPT under `/evidence/` (18)
+
+Studies, trials, device-in-use case studies, and milestone press. Each post's URL was `/news/<slug>` or `/blog/<slug>`; now `/evidence/<slug>`. 301s in `public/_redirects` cover both plain and WordPress-dated legacy forms.
+
+**Studies + third-party evaluations:**
+- Tried and Tested (2014)
+- Coventry University evaluates the MUJO devices (2015)
+- Clinical Feasibility Study begins at RNOH (2016)
+- CircleBedfordshire MSK Service joins Innovate UK study (2016)
+- Positive Results Reported from Clinical Study (2016)
+- MUJO interviews Dr Niels Peek, University of Manchester (2017)
+- Upper quadrant motor control training with MUJO — fall rates in the elderly (2017)
+
+**Device in use / installations:**
+- Installation at Royal National Orthopaedic Hospital NHS Trust (2014)
+- MUJO Supplies Artros Healthfocus (Dutch) (2015)
+- MUJO Available at GB Weightlifting affiliate The Iron Club (2015)
+- Installation at English Institute of Sport Lilleshall (2015)
+- Ratio Medical Training AG appointed Swiss representative (2015)
+- English Institute of Sport adopts MUJO (2017)
+- Wasps Rugby use MUJO for post-op shoulder dislocation rehab (2018)
+
+**Regulatory + programme milestones:**
+- MUJO wins Innovate UK Funding — Digital Health in a Connected Hospital (2014)
+- MUJO Showcases Connected Devices at Innovate 2015 + registers with MHRA (2015)
+- MUJO Patent Approved in the United States (2016)
+- MUJO secures FDA listing for its Connected Health Devices (2017)
+
+### KEPT under `/resources/` (6)
+
+Evergreen educational content. Not in top nav — footer link only. Retains SEO value from search terms like "anatomy of the shoulder" and "frozen shoulder exercises".
+
+- Anatomy of the Shoulder Part 1 (2018)
+- Anatomy of the Shoulder Part 2 — Ligaments and Capsules (2018)
+- Anatomy of the Shoulder Part 3 — Muscular Structures (2018)
+- 7 Home-Based Exercises to Help a Frozen Shoulder (2017)
+- MUJO Exercises for Shoulder Impingement Syndrome (2017)
+- 5 Exercises to Help Correct Shoulder Impingement Syndrome (2017)
+
+### KILLED (18)
+
+Award shortlists, event write-ups, thin generic pain-tip articles, and sports-derivative content that doesn't reference actual MUJO use.
+
+- News: BESS 2013 exhibit · British Engineering Excellence Awards shortlist · IET Innovation Awards finalists · EUSSER symposium attendance · Digital Health Pit Stop Week · Sports Technology Award shortlist · Angels in MedCity pitch · F1 Best Exhibitor award · Imperial MedTech Links membership · Pitch@Palace 5.0 · Accelerating British Innovation (thin) — 11 items
+- Blog: NFL shoulder injuries · Baseball / GIRD shoulder · Brain motor control (thin theory) · Shoulder pain at night (thin generic) · Top rotator cuff exercises (thin generic) · Best exercises for frozen shoulder (duplicated) · How to reduce shoulder pain when raising your arm (thin) — 7 items
+
+Redirect destinations:
+- Killed news → `/evidence/` (nearest section)
+- Killed sports-derivative blog → `/athletes/`
+- Everything else caught by the wildcard fallbacks in `_redirects`
+
+### (Historical) Pre-reshape post metadata
+
+Below is the original post distribution as of the Phase 1 audit, preserved for reference. All 42 posts have now been reclassified per the tables above.
 
 Content is heavily dated — **the newest post is 2018-07-10**. Nothing has been published in 8 years. Category distribution:
 
@@ -163,31 +233,34 @@ Items surfaced by the audit that aren't cleanly resolved by the REST API pull:
 * **Google Search Console / sitemap.xml** — do we have access to Search Console for the domain? Determines whether we can see current head-term traffic and 404 rates.
 * **Redirect table** — the WP site may already have redirects configured via Redirection or another plugin. Worth checking before we build the new redirect map so we don't lose existing redirects.
 
-## Proposed New Sitemap (Summary)
+## Current Sitemap (post 2026-08-06 IA reshape)
 
-Based on the dispositions above, the new site collapses to roughly this shape. Final URLs subject to your review.
+Live shape after the reshape:
 
 ```
-/                                                        (Home — full rewrite)
+/                                                        (Home — clinicians + investors + athletes focus)
 /technology                                              (Product + hardware overview)
   /technology/dashboard-and-predictive-model             (Future offering, roadmap language)
-/treatments                                              (Conditions landing)
-  /treatments/frozen-shoulder
-  /treatments/shoulder-impingement
-  /treatments/shoulder-instability
-  /treatments/upper-back-and-neck-pain
-/evidence                                                (Clinical evidence library index)
-/blog                                                    (Educational content index)
-/news                                                    (Press / milestones index)
-/faqs                                                    (Refreshed, with contact-us CTAs)
+/evidence                                                (Consolidated: Clinical Evidence + In Use / Recognition)
+  /evidence/<slug>                                       (18 case-study + milestone posts)
+/athletes                                                (For Athletes — Wasps, EIOS, GB Weightlifting; CTA to contact)
+/investors                                               (Series A / KTP story; CTA to contact)
 /about                                                   (Company)
-  /about/team                                            (All bios on one page, anchored)
-/contact                                                 (Single enquiry surface)
+  /about/team                                            (Gerard, Michael, Andre, Jeff)
+/contact
+  /contact/thanks                                        (Post-form landing)
+/treatments/frozen-shoulder                              (SEO landings, reachable from Technology + Evidence)
+/treatments/shoulder-impingement
+/treatments/shoulder-instability
+/treatments/upper-back-and-neck-pain
+/resources                                               (Footer link — educational articles)
+  /resources/<slug>                                      (6 evergreen educational posts)
+/faqs                                                    (Footer link, with contact-us CTAs)
 /privacy
 /terms
 ```
 
-That is **~11 core pages + 3 content indexes + a growing blog/evidence/news post list**, down from 40 pages currently. Consistent with the "10–15 pages after rationalisation" estimate in [requirements.md](requirements.md).
+**Count:** 6 top-nav pages + 4 SEO condition pages + 3 footer utility pages + 18 evidence posts + 6 resource posts + 3 legal / thanks pages. Roughly 40 URLs total, down from 40 pages / 42 posts on the legacy site — but the new URLs are all live, none placeholder or ghost.
 
 ## Decisions Requested Before Phase 2
 

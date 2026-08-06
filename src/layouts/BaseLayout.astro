@@ -7,15 +7,17 @@ interface Props {
   title: string;
   description?: string;
   canonicalPath?: string;
+  brand?: string;
 }
 
 const {
   title,
-  description = 'MUJO — clinically grounded shoulder rehabilitation devices and software.',
+  description = 'MuJo — clinically grounded shoulder rehabilitation devices and software.',
   canonicalPath,
+  brand,
 } = Astro.props;
 
-const siteName = 'MUJO';
+const siteName = 'MuJo';
 const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
 const canonical = canonicalPath
   ? new URL(canonicalPath, Astro.site).toString()
@@ -25,7 +27,7 @@ const canonical = canonicalPath
 const STAGING = true;
 ---
 <!doctype html>
-<html lang="en-GB">
+<html lang="en-GB" data-brand={brand}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

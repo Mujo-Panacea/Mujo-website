@@ -39,7 +39,9 @@ const footerLinks = [
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <div class="brand-mark">MUJO</div>
+      <a href="/" class="brand-mark" aria-label="MuJo — home">
+        <img src="/images/brand/logo-grey.png" alt="MuJo" width="120" height="39" />
+      </a>
       <p class="tagline">Clinically grounded shoulder rehabilitation.</p>
       <a href="/portal/" class="portal-link">Clinician Portal &rarr;</a>
     </div>
@@ -64,20 +66,20 @@ const footerLinks = [
 
 <style>
   .site-footer {
-    background: var(--color-brand-strong);
-    color: #dfe6ec;
+    background: var(--brand-grey);
+    color: #d6d1cf;
     padding-block: var(--space-16) var(--space-8);
     margin-top: var(--space-24);
   }
 
   .site-footer a {
-    color: #dfe6ec;
+    color: #d6d1cf;
     text-decoration: none;
   }
 
   .site-footer a:hover {
-    color: #fff;
-    text-decoration: underline;
+    color: var(--brand-mint);
+    text-decoration: none;
   }
 
   .footer-inner {
@@ -87,24 +89,35 @@ const footerLinks = [
   }
 
   .brand-mark {
-    font-weight: 800;
-    font-size: 1.5rem;
-    letter-spacing: 0.05em;
-    color: #fff;
-    margin-bottom: var(--space-2);
+    display: inline-block;
+    margin-bottom: var(--space-4);
+  }
+
+  .brand-mark img {
+    height: 2.25rem;
+    width: auto;
+    display: block;
+    /* Grey PNG → white via invert. Same logo file works on the dark footer. */
+    filter: brightness(0) invert(1);
   }
 
   .tagline {
-    color: #b6c1cc;
+    color: #a8a3a1;
     margin-bottom: var(--space-4);
   }
 
   .portal-link {
     display: inline-block;
     padding: var(--space-2) var(--space-4);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid var(--brand-mint);
     border-radius: var(--radius-md);
     font-size: 0.9rem;
+    color: var(--brand-mint) !important;
+  }
+
+  .portal-link:hover {
+    background: var(--brand-mint);
+    color: var(--brand-grey) !important;
   }
 
   .footer-columns {
@@ -117,7 +130,7 @@ const footerLinks = [
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #b6c1cc;
+    color: var(--brand-mint);
     margin-bottom: var(--space-3);
   }
 
@@ -137,8 +150,8 @@ const footerLinks = [
     justify-content: space-between;
     padding-top: var(--space-8);
     margin-top: var(--space-12);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: #b6c1cc;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    color: #a8a3a1;
   }
 
   @media (min-width: 700px) {

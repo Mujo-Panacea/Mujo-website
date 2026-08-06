@@ -1,19 +1,76 @@
+/*
+ * MuJo brand tokens — sourced from the MuJo Brand and Identity Guidelines (Jan 2015).
+ *
+ * Primary sub-brand for the website: Medical & Rehabilitation → Mint on Grey.
+ * /athletes accent: Elite Sports → Blue on Grey.
+ *
+ * The full 12-colour palette is defined below for the corporate 'M' icon.
+ * Every non-icon element should use Grey / White / Mint (or Blue on /athletes/).
+ *
+ * Typography: Proxima Nova (primary) with Proxima Nova Soft (complementary) and
+ * Arial (fallback per brand guide, p.14). Proxima Nova requires an Adobe Fonts
+ * licence — when Gerard adds an Adobe Fonts project ID, load the kit in
+ * BaseLayout.astro and drop the Montserrat fallback from this stack.
+ */
+
 :root {
-  --color-bg: #ffffff;
-  --color-fg: #111318;
-  --color-muted: #4a5162;
-  --color-subtle: #e5e7ec;
-  --color-border: #d9dde3;
+  /* ─── Core neutrals (brand guide p.9) ─── */
+  --brand-grey: #484544;     /* Primary — headings, body text, dark surfaces */
+  --brand-white: #ffffff;
 
-  --color-brand: #0b3d5c;
-  --color-brand-strong: #062940;
-  --color-brand-accent: #3aa0a0;
-  --color-accent: #d64545;
+  /* ─── Sub-brand: Medical & Rehabilitation (brand guide p.27) ─── */
+  --brand-mint: #78c4b7;
 
-  --color-link: var(--color-brand);
-  --color-link-hover: var(--color-brand-strong);
+  /* ─── Sub-brand: Elite Sports Performance (brand guide p.33) — /athletes accent ─── */
+  --brand-sports-blue: #222f5d;
 
-  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* ─── Sub-brand: Leisure & Wellbeing (brand guide p.39) — future use ─── */
+  --brand-lime: #bed35f;
+
+  /* ─── Corporate palette — for the 'M' icon only (brand guide p.20) ─── */
+  --palette-lime: #bed35f;
+  --palette-yellow: #dbac27;
+  --palette-green: #54b15c;
+  --palette-orange: #d57228;
+  --palette-mint: #78c4b7;
+  --palette-strawberry: #cb4848;
+  --palette-sky: #6aaad1;
+  --palette-magenta: #c05494;
+  --palette-royal: #2d5596;
+  --palette-violet: #90398d;
+  --palette-blue: #222f5d;
+  --palette-purple: #69559e;
+
+  /* ─── Semantic surface / text roles ─── */
+  --color-bg: var(--brand-white);
+  --color-fg: var(--brand-grey);
+  --color-muted: #6f6b6a;               /* softened grey for supporting text */
+  --color-subtle: #f4f2f0;              /* warm off-white for section bands */
+  --color-border: #dfdbd9;              /* neutral rule/border tint */
+
+  /* Brand + accent (Medical & Rehabilitation surface) */
+  --color-brand: var(--brand-mint);
+  --color-brand-strong: #5aa89b;        /* darker mint for hover / dark surfaces */
+  --color-brand-ink: var(--brand-grey); /* text on mint surfaces stays Grey */
+
+  --color-accent: var(--brand-sports-blue);   /* used on /athletes/ */
+
+  --color-link: var(--color-brand-strong);
+  --color-link-hover: var(--brand-grey);
+
+  /* ─── Typography stack ─── */
+  --font-body:
+    "Proxima Nova",
+    "proxima-nova",
+    "Montserrat",           /* free Google-Fonts stand-in until PN licence lands */
+    "Arial Rounded MT Bold",
+    Arial,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+
   --font-heading: var(--font-body);
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
@@ -25,8 +82,13 @@
   --fs-4xl: 3.5rem;
 
   --lh-body: 1.6;
-  --lh-heading: 1.2;
+  --lh-heading: 1.15;
 
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+
+  /* ─── Spacing ─── */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -44,4 +106,16 @@
   --container-narrow: 44rem;
   --container-default: 64rem;
   --container-wide: 80rem;
+}
+
+/*
+ * /athletes/ swaps in the Elite Sports Performance palette per brand guide p.33.
+ * Grey remains the text colour. Blue replaces Mint as the accent.
+ */
+[data-brand="sports"] {
+  --color-brand: var(--brand-sports-blue);
+  --color-brand-strong: #172142;
+  --color-brand-ink: var(--brand-white);
+  --color-link: var(--color-brand);
+  --color-link-hover: var(--color-brand-strong);
 }

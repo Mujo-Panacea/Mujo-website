@@ -20,14 +20,14 @@ const posts = defineCollection({
 
 const team = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/team' }),
-  schema: ({ image }) =>
-    z.object({
-      name: z.string(),
-      role: z.string(),
-      order: z.number(),
-      photo: image().optional(),
-      linkedin: z.string().url().optional(),
-    }),
+  schema: z.object({
+    name: z.string(),
+    role: z.string(),
+    order: z.number(),
+    photo: z.string().optional(),
+    linkedin: z.string().url().optional(),
+    summary: z.string().optional(),
+  }),
 });
 
 const partners = defineCollection({

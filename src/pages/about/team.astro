@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ReviewBanner from '../../components/ReviewBanner.astro';
+import { getCollection, render } from 'astro:content';
+
+const members = (await getCollection('team'))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const rendered = await Promise.all(
+  members.map(async (m) => {
+    const { Content } = await render(m);
+    return { data: m.data, id: m.id, Content };
+  })
+);
+---
+<BaseLayout title="Team" description="The MuJo Panacea leadership team.">
+  <section class="section container">
+    <header class="page-header">
+      <h1>Team</h1>
+      <p class="lede">The people running MuJo Panacea. Full bios and photos land as Gerard provides them.</p>
+    </header>
+
+    <ReviewBanner>Placeholder bios and portrait silhouettes. Gerard to supply final copy (~80–120 words each) and photos. Jeff McBride's exact role also needs confirming.</ReviewBanner>
+
+    <ul class="team-grid">
+      {rendered.map((m) => (
+        <li id={m.id} class="team-card">
+          <div class="photo">
+            <img src={m.data.photo ?? '/images/team/placeholder-avatar.svg'} alt="" loading="lazy" width="320" height="320" />
+          </div>
+          <div class="body">
+            <h2>{m.data.name}</h2>
+            <p class="role">{m.data.role}</p>
+            {m.data.summary && <p class="summary">{m.data.summary}</p>}
+            <div class="bio">
+              <m.Content />
+            </div>
+            {m.data.linkedin && (
+              <p class="links">
+                <a href={m.data.linkedin} rel="noopener" target="_blank">LinkedIn &rarr;</a>
+              </p>
+            )}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header { margin-bottom: var(--space-8); }
+  .lede { font-size: var(--fs-lg); color: var(--color-muted); }
+
+  .team-grid {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-8) 0 0;
+    display: grid;
+    gap: var(--space-8);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 720px) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .team-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .photo {
+    background: var(--color-subtle);
+    aspect-ratio: 1 / 1;
+  }
+
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .body {
+    padding: var(--space-6);
+  }
+
+  .team-card h2 {
+    margin: 0 0 var(--space-1);
+    color: var(--color-fg);
+  }
+
+  .role {
+    color: var(--color-brand-strong);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.85rem;
+    margin: 0 0 var(--space-4);
+  }
+
+  .summary {
+    font-size: var(--fs-lg);
+    color: var(--color-fg);
+    margin: 0 0 var(--space-4);
+  }
+
+  .bio :global(p) {
+    color: var(--color-muted);
+  }
+
+  .bio :global(strong) {
+    color: var(--color-fg);
+  }
+
+  .links a {
+    color: var(--color-brand-strong);
+    font-weight: var(--fw-medium);
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    color: var(--color-fg);
+  }
+</style>

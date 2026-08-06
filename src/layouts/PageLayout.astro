@@ -6,8 +6,9 @@ import BaseLayout from './BaseLayout.astro';
 const frontmatter = (Astro.props as any).frontmatter ?? {};
 const title: string = (Astro.props as any).title ?? frontmatter.title ?? 'MUJO';
 const description: string | undefined = (Astro.props as any).description ?? frontmatter.description;
+const brand: string | undefined = (Astro.props as any).brand ?? frontmatter.brand;
 ---
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} brand={brand}>
   <article class="section container container-narrow">
     <header class="page-header">
       <h1>{title}</h1>

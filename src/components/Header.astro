@@ -13,7 +13,9 @@ const isActive = (href: string) =>
 ---
 <header class="site-header">
   <div class="container header-inner">
-    <a href="/" class="brand">MUJO</a>
+    <a href="/" class="brand" aria-label="MuJo — home">
+      <img src="/images/brand/logo-grey.png" alt="MuJo" width="120" height="39" />
+    </a>
     <nav aria-label="Primary">
       <ul class="nav-list">
         {nav.map((item) => (
@@ -50,11 +52,15 @@ const isActive = (href: string) =>
   }
 
   .brand {
-    font-weight: 800;
-    font-size: 1.5rem;
-    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
-    color: var(--color-brand);
+  }
+
+  .brand img {
+    height: 2.25rem;
+    width: auto;
+    display: block;
   }
 
   .nav-list {
@@ -68,17 +74,17 @@ const isActive = (href: string) =>
   .nav-list a {
     text-decoration: none;
     color: var(--color-fg);
-    font-weight: 500;
+    font-weight: var(--fw-medium);
   }
 
   .nav-list a[aria-current='page'] {
-    color: var(--color-brand);
+    color: var(--color-brand-strong);
     text-decoration: underline;
     text-underline-offset: 6px;
   }
 
   .nav-list a:hover {
-    color: var(--color-brand);
+    color: var(--color-brand-strong);
   }
 
   .contact-cta {

@@ -1,5 +1,13 @@
 @import "./tokens.css";
 
+/*
+ * Load Montserrat from Google Fonts as the Proxima Nova stand-in.
+ * When Gerard adds an Adobe Fonts kit ID for Proxima Nova, replace this
+ * import with the Adobe Fonts link in BaseLayout.astro and drop Montserrat
+ * from the font stack in tokens.css.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
 *,
 *::before,
 *::after {
@@ -20,6 +28,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-weight: var(--fw-regular);
 }
 
 main {
@@ -84,27 +93,29 @@ a:hover {
   display: inline-block;
   padding: var(--space-3) var(--space-6);
   background: var(--color-brand);
-  color: #fff;
+  color: var(--color-brand-ink, var(--brand-white));
   border-radius: var(--radius-md);
+  border: 1px solid transparent;
   text-decoration: none;
-  font-weight: 600;
-  transition: background 120ms ease;
+  font-weight: var(--fw-bold);
+  transition: background 120ms ease, transform 120ms ease;
 }
 
 .button:hover {
   background: var(--color-brand-strong);
-  color: #fff;
+  color: var(--brand-white);
+  transform: translateY(-1px);
 }
 
 .button-outline {
   background: transparent;
-  color: var(--color-brand);
-  border: 1px solid var(--color-brand);
+  color: var(--color-fg);
+  border-color: var(--color-fg);
 }
 
 .button-outline:hover {
-  background: var(--color-brand);
-  color: #fff;
+  background: var(--color-fg);
+  color: var(--brand-white);
 }
 
 .visually-hidden {

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-label="Team member portrait placeholder">
+  <rect width="320" height="320" fill="#f4f2f0"/>
+  <circle cx="160" cy="130" r="52" fill="#78c4b7" opacity="0.7"/>
+  <path d="M60 300 C 60 220, 260 220, 260 300 Z" fill="#78c4b7" opacity="0.7"/>
+  <text x="160" y="308" font-family="Montserrat,Arial,system-ui,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#484544" letter-spacing="0.05em">PHOTO TO FOLLOW</text>
+</svg>

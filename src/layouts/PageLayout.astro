@@ -1,12 +1,11 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 
-interface Props {
-  title: string;
-  description?: string;
-}
-
-const { title, description } = Astro.props;
+// Astro passes MDX/Markdown frontmatter under `frontmatter`, but we also
+// support direct props so this layout can be used from .astro pages too.
+const frontmatter = (Astro.props as any).frontmatter ?? {};
+const title: string = (Astro.props as any).title ?? frontmatter.title ?? 'MUJO';
+const description: string | undefined = (Astro.props as any).description ?? frontmatter.description;
 ---
 <BaseLayout title={title} description={description}>
   <article class="section container container-narrow">

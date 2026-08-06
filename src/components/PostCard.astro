@@ -1,0 +1,113 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const { title, description, publishedDate, category, heroImage, archived } = post.data;
+const href = `/${category}/${post.id}/`;
+---
+<a href={href} class="card" aria-label={title}>
+  {heroImage && (
+    <div class="hero">
+      <img src={heroImage} alt="" loading="lazy" />
+    </div>
+  )}
+  <div class="body">
+    <p class="meta">
+      <span class="cat">{category}</span>
+      {archived && <span class="archived">Archived</span>}
+      <time datetime={publishedDate.toISOString()}>
+        {publishedDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })}
+      </time>
+    </p>
+    <h2>{title}</h2>
+    <p class="desc">{description}</p>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-bg);
+    transition: border-color 120ms ease, transform 120ms ease;
+  }
+
+  .card:hover {
+    border-color: var(--color-brand);
+    transform: translateY(-2px);
+  }
+
+  .hero {
+    aspect-ratio: 16 / 9;
+    background: var(--color-subtle);
+    overflow: hidden;
+  }
+
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .body {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    flex: 1;
+  }
+
+  .meta {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-muted);
+    margin: 0;
+  }
+
+  .cat {
+    background: var(--color-brand);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  .archived {
+    background: var(--color-accent);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  time {
+    margin-left: auto;
+  }
+
+  h2 {
+    color: var(--color-brand);
+    font-size: 1.15rem;
+    margin: var(--space-2) 0 0;
+    line-height: 1.35;
+  }
+
+  .desc {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,61 @@
+# Netlify redirects — 301s from legacy WordPress URLs to their new homes.
+#
+# Sources: docs/sitemap.md (KILL and MERGE rows).
+# One 301 per legacy URL. Trailing-slash form matches WordPress default;
+# Netlify normalises to canonical form automatically.
+
+# ─── Pages KILLed outright ───────────────────────────────────────────────
+/audience                                    /                          301
+/audience/employers                          /                          301
+/audience/health-care-providers              /treatments/               301
+/audience/individuals                        /treatments/               301
+/consulting                                  /                          301
+/why-us                                      /                          301
+/book-free-taster                            /contact/                  301
+/booking                                     /contact/                  301
+/treatments/enquire                          /contact/                  301
+/research                                    /evidence/                 301
+/research/conditions                         /treatments/               301
+/research/device-development                 /technology/               301
+
+# ─── Legacy team-member bios (six of seven KILLed; Jeff carries over) ────
+/our-team/douglas-higgins                    /about/team/               301
+/our-team/dr-asim-i-bhuta                    /about/team/               301
+/our-team/dr-hichem-ben-hamida               /about/team/               301
+/our-team/geri-mcmahon                       /about/team/               301
+/our-team/professor-alison-mcgregor          /about/team/               301
+/our-team/susanna-everitt-frcgp              /about/team/               301
+/our-team/jeff-mcbride                       /about/team/#jeff-mcbride  301
+
+# ─── /about-us → /about ──────────────────────────────────────────────────
+/about-us                                    /about/                    301
+/about-us/our-team                           /about/team/               301
+/our-team                                    /about/team/               301
+
+# ─── /technology/devices merged into /technology ─────────────────────────
+/technology/devices                          /technology/               301
+
+# ─── Duplicate treatments/research condition pages consolidated ──────────
+/research/conditions/frozen-shoulder-contracture-syndrome   /treatments/frozen-shoulder/       301
+/research/conditions/shoulder-impingement-syndrome          /treatments/shoulder-impingement/  301
+/research/conditions/upper-back-and-neck-pain               /treatments/upper-back-and-neck-pain/ 301
+
+# ─── Legacy URL forms ────────────────────────────────────────────────────
+# WordPress used /home for the home page — redirect to root.
+/home                                        /                          301
+# Legal page paths
+/privacy-policy                              /privacy/                  301
+/terms-and-conditions                        /terms/                    301
+
+# ─── WordPress dated blog/news/evidence URLs → new flat paths ────────────
+# WP used /blog/YYYY/MM/DD/slug/. Netlify wildcard captures the slug and
+# routes to the new category-based path. Category is inferred from the
+# original path segment.
+/blog/*/*/*/:slug                            /blog/:slug/               301
+/news/*/*/*/:slug                            /news/:slug/               301
+/evidence/*/*/*/:slug                        /evidence/:slug/           301
+
+# ─── Miscellaneous ───────────────────────────────────────────────────────
+# Trailing slash normalisation Netlify handles by default. No entry needed.
+
+# END

@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts', ({ data }) => data.category === 'news'))
+  .sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf());
+---
+<BaseLayout title="News" description="Company milestones, product releases, and press mentions from MUJO Panacea.">
+  <section class="section container">
+    <header>
+      <h1>News</h1>
+      <p>Company milestones, product releases, and press mentions. Historic entries reflect the state of MUJO at the time of publication.</p>
+    </header>
+
+    {posts.length === 0 ? (
+      <p><em>No news items migrated yet.</em></p>
+    ) : (
+      <ul class="post-grid">
+        {posts.map((post) => (
+          <li><PostCard post={post} /></li>
+        ))}
+      </ul>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .post-grid {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-8) 0 0;
+    display: grid;
+    gap: var(--space-6);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 700px) {
+    .post-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .post-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

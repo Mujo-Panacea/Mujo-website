@@ -1,0 +1,125 @@
+---
+// Netlify Forms — Astro/static setup.
+//
+// - `data-netlify="true"` and `name="contact"` register the form with Netlify's build detector.
+// - `netlify-honeypot="bot-field"` gives us basic spam filtering with no CAPTCHA on real users.
+// - The hidden `form-name` input is required for static form submission POSTs.
+// - Submissions land in the Netlify dashboard by default; email notifications
+//   route to gerard@panacea.ws (configured in Netlify → Forms → Notifications).
+// - After successful submission Netlify redirects to `/contact/thanks/`.
+---
+<form
+  name="contact"
+  method="POST"
+  action="/contact/thanks/"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="contact-form"
+>
+  <input type="hidden" name="form-name" value="contact" />
+  <p class="honeypot" aria-hidden="true">
+    <label>
+      Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off" />
+    </label>
+  </p>
+
+  <div class="field">
+    <label for="name">Your name</label>
+    <input type="text" id="name" name="name" required autocomplete="name" />
+  </div>
+
+  <div class="field">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required autocomplete="email" />
+  </div>
+
+  <div class="field">
+    <label for="organisation">Organisation <span class="opt">(optional)</span></label>
+    <input type="text" id="organisation" name="organisation" autocomplete="organization" />
+  </div>
+
+  <div class="field">
+    <label for="reason">What is your enquiry about?</label>
+    <select id="reason" name="reason" required>
+      <option value="">Please choose one…</option>
+      <option value="clinical">Clinical / clinician enquiry</option>
+      <option value="investor">Investor / partnership enquiry</option>
+      <option value="press">Press / media</option>
+      <option value="existing-customer">Existing customer / support</option>
+      <option value="other">Something else</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="6" required></textarea>
+  </div>
+
+  <button type="submit" class="button">Send enquiry</button>
+</form>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 34rem;
+  }
+
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  label {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .opt {
+    color: var(--color-muted);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+    padding: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    color: var(--color-fg);
+    transition: border-color 120ms ease;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: 2px solid var(--color-brand);
+    outline-offset: -1px;
+    border-color: var(--color-brand);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 8rem;
+  }
+
+  button {
+    align-self: flex-start;
+    margin-top: var(--space-2);
+    border: 0;
+    cursor: pointer;
+  }
+</style>

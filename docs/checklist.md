@@ -77,26 +77,28 @@
 
 ### Blog / post migration
 
-- [ ] Migrate all 42 posts to MDX in `/src/content/posts/` (or framework equivalent) — full carry-over, cull deferred to post-launch
-- [ ] Assign each migrated post to its content index (evidence / blog / news)
-- [ ] Show original publication dates prominently — do not silently rebadge 2015 content as 2026
-- [ ] Consolidate categories: retire the four zero-post categories (`Conditions`, `Device Development`, `Research`); retain News, Blog, Evidence plus topical tags (Frozen Shoulder, Shoulder Impingement, Shoulder Pain, Tips, Guest Interviews)
+- [x] Migrate all 42 posts to MDX in `/src/content/posts/` — full carry-over, cull deferred to post-launch
+- [x] Assign each migrated post to its content index (evidence / blog / news) — routed via `category` frontmatter into `/blog/`, `/news/`, `/evidence/`
+- [x] Show original publication dates prominently — do not silently rebadge 2015 content as 2026
+- [x] Auto-mark 2013–2019 posts as `archived: true` so readers see them for what they are
+- [x] Consolidate categories: retire the four zero-post categories; retain News, Blog, Evidence
 
 ### Assets
 
-- [ ] Enumerate images used on retained pages (from WP REST media API + per-page content scans)
-- [ ] Download those images to `/public/images/` (or framework-equivalent), organised by page
-- [ ] Add descriptive `alt` text on every image (WCAG 2.1 AA)
-- [ ] Extract partner logos referenced in [sitemap.md](sitemap.md#site-chrome-current) and place in `/public/images/partners/`
-- [ ] Extract and rehost the MUJO logo, favicon, and any brand-mark variants
+- [x] Enumerate images referenced by posts (89 images from 38 posts with heroes + body figures)
+- [x] Download images to `/public/images/posts/<slug>/` — 89/89 fetched via `scripts/download_media.sh`
+- [ ] Add descriptive `alt` text on every image (WCAG 2.1 AA) — currently blank alts on migrated images, needs a pass
+- [ ] Extract partner logos and place in `/public/images/partners/` (deferred until home + about editorial pass)
+- [ ] Extract and rehost the MUJO logo, favicon, and any brand-mark variants (deferred until brand kit arrives)
 
 ### Manual rebuilds
 
-- [ ] Contact form component (Netlify Forms, or chosen alternative)
+- [x] Contact form component (Netlify Forms) — `src/components/ContactForm.astro` + `/contact/` + `/contact/thanks/`
+- [ ] Configure Netlify → Forms → Notifications to email gerard@panacea.ws (needs Netlify dashboard access)
 - [ ] Cookie banner (implementation TBD once analytics decision is made)
 - [ ] Any newsletter signup (only if requested — not currently on scope)
-- [ ] Instagram feed — decision: drop entirely, or replace with a curated 3-image static grid so the site is not dependent on a stale Instagram token
-- [ ] Twitter widget — drop; API instability makes it not worth it
+- [x] Instagram feed — dropped; no equivalent added
+- [x] Twitter widget — dropped; API instability makes it not worth it
 
 **Exit criteria:** every page in the rationalised sitemap is present on staging with reviewed and approved content, images rehosted, and no `TODO` / `LOREM IPSUM` / placeholder markers.
 
@@ -181,3 +183,5 @@ Add dated entries here as decisions are made. Keep the entry short — the reaso
 * **2026-07-31** — Posts approach confirmed: keep all 42 posts for the rebuild. Reshape the site around the sitemap first, then cull dated news and refresh the blog post-launch. Per-post disposition file deferred as post-launch cleanup.
 * **2026-07-31** — Phase 1 audit closed. Ready to begin Phase 2 (framework + repo setup) on Gerard's go.
 * **2026-07-31** — Phase 2 stack locked in: Astro + Markdown/MDX in-repo + Netlify hosting + Netlify Forms for contact + `beta.mujofitness.com` staging. No new accounts required beyond the Netlify account already opened. Cookie banner + analytics choices remain deferred to Phase 4.
+* **2026-08-04** — Astro 7 scaffold committed, dev server working end-to-end. Node 26 LTS installed via Homebrew as a prerequisite.
+* **2026-08-05** — Phase 3 mechanical migration complete. 42 WordPress posts → MDX (blog / news / evidence) with 89 hero + body images rehosted. 13 retained pages have shells or migrated bodies with `ReviewBanner` markers for editorial pass. Contact form wired to Netlify Forms. 301 redirect map covers every KILL / MERGE row in the sitemap. Production build clean — 60 pages built in ~5s. Awaiting Gerard's editorial pass on home, technology, about, faqs, and legal pages; awaiting brand kit and team bios/photos.

@@ -3,18 +3,19 @@ import { glob } from 'astro/loaders';
 
 const posts = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' }),
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      description: z.string(),
-      publishedDate: z.coerce.date(),
-      updatedDate: z.coerce.date().optional(),
-      category: z.enum(['news', 'blog', 'evidence']),
-      tags: z.array(z.string()).default([]),
-      author: z.string().default('MUJO Panacea'),
-      heroImage: image().optional(),
-      archived: z.boolean().default(false),
-    }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    publishedDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    category: z.enum(['news', 'blog', 'evidence']),
+    tags: z.array(z.string()).default([]),
+    author: z.string().default('MUJO Panacea'),
+    heroImage: z.string().optional(),
+    archived: z.boolean().default(false),
+    legacyId: z.number().optional(),
+    legacyUrl: z.string().url().optional(),
+  }),
 });
 
 const team = defineCollection({

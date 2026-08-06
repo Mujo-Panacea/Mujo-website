@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts', ({ data }) => data.category === 'evidence'))
+  .sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf());
+---
+<BaseLayout title="Evidence" description="Clinical studies, feasibility reports, and third-party evaluations of the MUJO system.">
+  <section class="section container">
+    <header>
+      <h1>Clinical Evidence</h1>
+      <p>Studies, feasibility reports, and third-party evaluations of the MUJO system. Extended as new evidence becomes available from the ongoing 1.5 pilot and 2.0 KTP programme.</p>
+    </header>
+
+    {posts.length === 0 ? (
+      <p><em>No evidence items migrated yet.</em></p>
+    ) : (
+      <ul class="post-grid">
+        {posts.map((post) => (
+          <li><PostCard post={post} /></li>
+        ))}
+      </ul>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .post-grid {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-8) 0 0;
+    display: grid;
+    gap: var(--space-6);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 700px) {
+    .post-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .post-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

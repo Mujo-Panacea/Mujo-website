@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts');
+  const posts = await getCollection('posts', ({ data }) => data.category === 'blog');
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
@@ -31,6 +31,9 @@ const { Content } = await render(post);
           <> &middot; updated {post.data.updatedDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</>
         )}
       </p>
+      {post.data.heroImage && (
+        <img src={post.data.heroImage} alt="" class="hero-image" loading="eager" />
+      )}
     </header>
     <div class="prose">
       <Content />
@@ -67,6 +70,19 @@ const { Content } = await render(post);
     color: var(--color-muted);
     font-size: 0.9rem;
     margin-bottom: var(--space-8);
+  }
+
+  .hero-image {
+    width: 100%;
+    max-height: 24rem;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin: var(--space-4) 0 var(--space-8);
+  }
+
+  .prose :global(img) {
+    border-radius: var(--radius-md);
+    margin-block: var(--space-4);
   }
 
   .prose :global(h2) {

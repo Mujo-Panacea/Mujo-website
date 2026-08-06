@@ -1,0 +1,67 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+<BaseLayout title={title} description={description}>
+  <article class="section container container-narrow">
+    <header class="page-header">
+      <h1>{title}</h1>
+      {description && <p class="lede">{description}</p>}
+    </header>
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: var(--space-8);
+  }
+
+  .lede {
+    font-size: var(--fs-lg);
+    color: var(--color-muted);
+  }
+
+  .prose :global(h2) {
+    margin-top: var(--space-12);
+    color: var(--color-brand);
+  }
+
+  .prose :global(h3) {
+    margin-top: var(--space-8);
+  }
+
+  .prose :global(p),
+  .prose :global(ul),
+  .prose :global(ol) {
+    font-size: var(--fs-lg);
+    line-height: 1.7;
+  }
+
+  .prose :global(blockquote) {
+    border-left: 4px solid var(--color-brand);
+    padding-left: var(--space-4);
+    margin-left: 0;
+    color: var(--color-muted);
+    font-style: italic;
+  }
+
+  .prose :global(img) {
+    border-radius: var(--radius-md);
+    margin-block: var(--space-4);
+  }
+
+  .prose :global(hr) {
+    border: 0;
+    border-top: 1px solid var(--color-border);
+    margin-block: var(--space-12);
+  }
+</style>

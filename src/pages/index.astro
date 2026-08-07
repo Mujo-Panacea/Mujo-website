@@ -3,41 +3,82 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('posts'))
+const evidence = (await getCollection('posts', ({ data }) => data.category === 'evidence'))
   .sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf())
   .slice(0, 3);
 ---
 <BaseLayout
-  title="MUJO"
-  description="Clinically grounded shoulder rehabilitation devices and software from MUJO Panacea."
+  title="MuJo"
+  description="Clinically grounded shoulder rehabilitation. Objective range-of-motion measurement, real-time visual feedback, and connected clinical data — used in NHS trusts and elite sports institutions."
 >
   <section class="hero">
     <div class="container container-narrow">
-      <p class="eyebrow">Skeleton page &middot; Phase 2 in progress</p>
-      <h1>Clinically grounded shoulder rehabilitation.</h1>
+      <p class="eyebrow">Multiple Joint Fitness Systems</p>
+      <h1>Objective, connected shoulder rehabilitation.</h1>
       <p class="lede">
-        MUJO builds musculoskeletal rehabilitation equipment for clinicians, sports
-        institutions, and research partners. This page is a scaffold — real content
-        arrives in Phase 3.
+        MuJo builds musculoskeletal rehabilitation equipment for clinicians, athletes,
+        and researchers. Our patented multi-axial cam captures the full range of motion,
+        turning subjective assessment into clinical-grade data.
       </p>
       <div class="cta-row">
-        <a href="/technology/" class="button">Explore the technology</a>
-        <a href="/contact/" class="button button-outline">Contact us</a>
+        <a href="/technology/" class="button">The technology</a>
+        <a href="/evidence/" class="button button-outline">Clinical evidence</a>
       </div>
     </div>
   </section>
 
   <section class="section container">
-    <h2>Latest from the site</h2>
-    {posts.length === 0 ? (
-      <p><em>No posts yet — seed content lands as the migration progresses.</em></p>
-    ) : (
+    <div class="two-up">
+      <div>
+        <p class="eyebrow">In use today</p>
+        <h2>Trusted by clinicians and elite institutions.</h2>
+        <p>
+          The MuJo system is installed at the Royal National Orthopaedic Hospital,
+          the English Institute of Sport Lilleshall, Wasps Rugby, Circle Bedfordshire MSK
+          Service, GB Weightlifting affiliates and evaluated by the University of Manchester
+          and Coventry University. FDA-listed under product code IKK. UK MHRA registered.
+        </p>
+        <p><a href="/evidence/" class="link">See the evidence &rarr;</a></p>
+      </div>
+      <div>
+        <p class="eyebrow">Where we are going</p>
+        <h2>Mujo 1.5 in pilot. Mujo 2.0 in KTP.</h2>
+        <p>
+          Mujo 1.5 re-enables the installed fleet on a modern Android platform and
+          drives structured clinical evidence generation with NHS and sports partners.
+          Mujo 2.0 &mdash; motorised, sensor-enabled, SaMD-qualifying &mdash; is being developed
+          under a Knowledge Transfer Partnership with an academic partner, targeting
+          EU MDR and FDA routes to market.
+        </p>
+        <p><a href="/investors/" class="link">Investor overview &rarr;</a></p>
+      </div>
+    </div>
+  </section>
+
+  {evidence.length > 0 && (
+    <section class="section container">
+      <header class="section-head">
+        <h2>Latest clinical evidence</h2>
+        <a href="/evidence/" class="link">All evidence &rarr;</a>
+      </header>
       <ul class="post-grid">
-        {posts.map((post) => (
+        {evidence.map((post) => (
           <li><PostCard post={post} /></li>
         ))}
       </ul>
-    )}
+    </section>
+  )}
+
+  <section class="cta-band">
+    <div class="container container-narrow">
+      <h2>Interested in a demonstration, a pilot, or an investment conversation?</h2>
+      <p>
+        We work with clinicians running MSK services, sports institutions building
+        objective-training programmes, and investors backing evidence-first medical
+        devices.
+      </p>
+      <a href="/contact/" class="button">Get in touch</a>
+    </div>
   </section>
 </BaseLayout>
 
@@ -51,7 +92,8 @@ const posts = (await getCollection('posts'))
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 0.85rem;
-    color: var(--color-muted);
+    color: var(--color-brand-strong);
+    font-weight: var(--fw-bold);
     margin-bottom: var(--space-4);
   }
 
@@ -72,6 +114,46 @@ const posts = (await getCollection('posts'))
     margin-top: var(--space-8);
   }
 
+  .two-up {
+    display: grid;
+    gap: var(--space-12);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 800px) {
+    .two-up {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .two-up h2 {
+    font-size: var(--fs-2xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .two-up p {
+    color: var(--color-muted);
+  }
+
+  .link {
+    color: var(--color-brand-strong);
+    font-weight: var(--fw-bold);
+    text-decoration: none;
+  }
+
+  .link:hover {
+    color: var(--color-fg);
+  }
+
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--space-8);
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
   .post-grid {
     list-style: none;
     padding: 0;
@@ -85,5 +167,36 @@ const posts = (await getCollection('posts'))
     .post-grid {
       grid-template-columns: repeat(3, 1fr);
     }
+  }
+
+  .cta-band {
+    background: var(--brand-grey);
+    color: var(--brand-white);
+    padding-block: var(--space-16);
+    margin-top: var(--space-16);
+    text-align: center;
+  }
+
+  .cta-band h2 {
+    color: var(--brand-white);
+    font-size: var(--fs-2xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .cta-band p {
+    color: #d6d1cf;
+    max-width: 40rem;
+    margin-inline: auto;
+    margin-bottom: var(--space-8);
+  }
+
+  .cta-band .button {
+    background: var(--brand-mint);
+    color: var(--brand-grey);
+  }
+
+  .cta-band .button:hover {
+    background: var(--color-brand-strong);
+    color: var(--brand-white);
   }
 </style>

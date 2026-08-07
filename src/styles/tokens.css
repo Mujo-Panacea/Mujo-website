@@ -8,9 +8,8 @@
  * Every non-icon element should use Grey / White / Mint (or Blue on /athletes/).
  *
  * Typography: Proxima Nova (primary) with Proxima Nova Soft (complementary) and
- * Arial (fallback per brand guide, p.14). Proxima Nova requires an Adobe Fonts
- * licence — when Gerard adds an Adobe Fonts project ID, load the kit in
- * BaseLayout.astro and drop the Montserrat fallback from this stack.
+ * Arial (fallback per brand guide, p.14). Proxima Nova is served via Gerard's
+ * personal Adobe Fonts kit (wgh8jyb), loaded in BaseLayout.astro.
  */
 
 :root {
@@ -60,9 +59,8 @@
 
   /* ─── Typography stack ─── */
   --font-body:
+    "proxima-nova",         /* Adobe Fonts family name */
     "Proxima Nova",
-    "proxima-nova",
-    "Montserrat",           /* free Google-Fonts stand-in until PN licence lands */
     "Arial Rounded MT Bold",
     Arial,
     system-ui,

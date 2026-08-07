@@ -1,12 +1,9 @@
 @import "./tokens.css";
 
 /*
- * Load Montserrat from Google Fonts as the Proxima Nova stand-in.
- * When Gerard adds an Adobe Fonts kit ID for Proxima Nova, replace this
- * import with the Adobe Fonts link in BaseLayout.astro and drop Montserrat
- * from the font stack in tokens.css.
+ * Proxima Nova is loaded via the Adobe Fonts <link> tag in BaseLayout.astro
+ * (kit wgh8jyb). No Google Fonts import required.
  */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
 *,
 *::before,

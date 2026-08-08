@@ -1,0 +1,115 @@
+---
+/**
+ * Alternating text / image content band.
+ *
+ * <MediaRow image="/images/site/mujo-device-1.jpg" alt="MuJo device" flip>
+ *   ## Heading
+ *   Body copy.
+ * </MediaRow>
+ *
+ * `flip` reverses image / text order.
+ * `background` swaps in the subtle band colour (great for zig-zag rhythm).
+ */
+
+interface Props {
+  image: string;
+  alt: string;
+  flip?: boolean;
+  background?: 'subtle' | 'none';
+}
+
+const { image, alt, flip = false, background = 'none' } = Astro.props;
+---
+<section class:list={['media-row', flip && 'flip', background === 'subtle' && 'band']}>
+  <div class="row-inner">
+    <div class="media">
+      <img src={image} alt={alt} loading="lazy" />
+    </div>
+    <div class="text">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .media-row {
+    padding-block: var(--space-16);
+    max-width: none;
+  }
+
+  .band {
+    background: var(--color-subtle);
+  }
+
+  .row-inner {
+    max-width: var(--container-default);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    gap: var(--space-12);
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+
+  @media (min-width: 800px) {
+    .row-inner {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .flip .row-inner {
+      direction: rtl;
+    }
+    .flip .row-inner > * {
+      direction: ltr;
+    }
+  }
+
+  .media img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    display: block;
+    box-shadow: 0 10px 30px -12px rgba(72, 69, 68, 0.25);
+  }
+
+  .text :global(h2) {
+    font-size: var(--fs-2xl);
+    margin: 0 0 var(--space-4);
+    color: var(--color-fg);
+  }
+
+  .text :global(h3) {
+    font-size: var(--fs-xl);
+    margin: 0 0 var(--space-3);
+    color: var(--color-brand-strong);
+  }
+
+  .text :global(p),
+  .text :global(ul),
+  .text :global(ol) {
+    font-size: var(--fs-lg);
+    line-height: 1.7;
+    color: var(--color-muted);
+    margin: 0 0 var(--space-4);
+  }
+
+  .text :global(p:last-child),
+  .text :global(ul:last-child),
+  .text :global(ol:last-child) {
+    margin-bottom: 0;
+  }
+
+  .text :global(strong) {
+    color: var(--color-fg);
+  }
+
+  .text :global(a) {
+    color: var(--color-brand-strong);
+    text-decoration: none;
+    font-weight: var(--fw-bold);
+  }
+
+  .text :global(a:hover) {
+    color: var(--color-fg);
+  }
+</style>

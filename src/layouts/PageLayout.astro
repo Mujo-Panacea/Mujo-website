@@ -9,7 +9,7 @@ const description: string | undefined = (Astro.props as any).description ?? fron
 const brand: string | undefined = (Astro.props as any).brand ?? frontmatter.brand;
 ---
 <BaseLayout title={title} description={description} brand={brand}>
-  <article class="section container container-narrow">
+  <article class="section container">
     <header class="page-header">
       <h1>{title}</h1>
       {description && <p class="lede">{description}</p>}
@@ -22,7 +22,8 @@ const brand: string | undefined = (Astro.props as any).brand ?? frontmatter.bran
 
 <style>
   .page-header {
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-12);
+    max-width: var(--container-narrow);
   }
 
   .lede {
@@ -30,13 +31,30 @@ const brand: string | undefined = (Astro.props as any).brand ?? frontmatter.bran
     color: var(--color-muted);
   }
 
+  /* Prose content stays at a comfortable measure for reading; wider blocks
+     (images, tables, alternating text-media rows) can override with their
+     own max-width or `--prose-wide` helpers. */
+  .prose :global(h2),
+  .prose :global(h3),
+  .prose :global(h4),
+  .prose :global(p),
+  .prose :global(ul),
+  .prose :global(ol),
+  .prose :global(blockquote),
+  .prose :global(hr),
+  .prose :global(.review-banner) {
+    max-width: 46rem;
+  }
+
   .prose :global(h2) {
     margin-top: var(--space-12);
-    color: var(--color-brand);
+    color: var(--color-brand-strong);
+    font-size: var(--fs-2xl);
   }
 
   .prose :global(h3) {
     margin-top: var(--space-8);
+    font-size: var(--fs-xl);
   }
 
   .prose :global(p),
@@ -56,7 +74,7 @@ const brand: string | undefined = (Astro.props as any).brand ?? frontmatter.bran
 
   .prose :global(img) {
     border-radius: var(--radius-md);
-    margin-block: var(--space-4);
+    margin-block: var(--space-6);
   }
 
   .prose :global(hr) {

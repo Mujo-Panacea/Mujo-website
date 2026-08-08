@@ -3,47 +3,191 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('posts', ({ data }) => data.category === 'evidence'))
-  .sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf());
----
-<BaseLayout title="Evidence" description="Clinical studies, feasibility reports, and third-party evaluations of the MUJO system.">
-  <section class="section container">
-    <header>
-      <h1>Clinical Evidence</h1>
-      <p>Studies, feasibility reports, and third-party evaluations of the MUJO system. Extended as new evidence becomes available from the ongoing 1.5 pilot and 2.0 KTP programme.</p>
-    </header>
+// Manually curated ordering within each group so the strongest items lead.
+// Studies + trials + independent evaluations first, then in-field case
+// studies at named institutions, then regulatory / programme milestones.
+const STUDIES = [
+  'positive-results-reported-clinical-study',
+  'clinical-feasibility-study-begins-royal-national-orthopaedic-hospital',
+  'coventry-university-evaluates-mujo-devices',
+  'upper-quadrant-motor-control-training-mujo-reduce-fall-rates-elderly',
+  'mujo-interviews-dr-niels-peek-university-manchester',
+  'circlebedfordshire-msk-service-joins-innovate-uk-study',
+  'tried-and-tested',
+];
 
-    {posts.length === 0 ? (
-      <p><em>No evidence items migrated yet.</em></p>
-    ) : (
-      <ul class="post-grid">
-        {posts.map((post) => (
-          <li><PostCard post={post} /></li>
-        ))}
-      </ul>
-    )}
+const CASE_STUDIES = [
+  'wasps-rugby-use-mujo-system-for-post-op-shoulder-dislocation-rehabilitation',
+  'english-institute-of-sport-adopts-mujo',
+  'installation-english-institute-sport-lilleshall-national-sports-centre',
+  'installation-royal-national-orthopaedic-hospital-nhs-trust',
+  'mujo-available-gb-weightlifting-affiliate-iron-club-vauxhall',
+  'mujo-supplies-leading-dutch-workmans-compensation-training-centre-artros-healthfocus',
+  'ratio-medical-training-ag-appointed-swiss-representative',
+];
+
+const MILESTONES = [
+  'mujo-achieves-fda-listing-for-its-connected-health-devices',
+  'mujo-showcases-connected-devices-innovate-2015-registers-mhra',
+  'mujo-patent-approved-united-states',
+  'mujo-wins-innovate-uk-funding-digital-health-connected-hospital',
+];
+
+const all = await getCollection('posts', ({ data }) => data.category === 'evidence');
+const bySlug = new Map(all.map((p) => [p.id, p]));
+
+const groupsMissing: string[] = [];
+const pick = (slugs: string[]) =>
+  slugs
+    .map((s) => {
+      const post = bySlug.get(s);
+      if (!post) groupsMissing.push(s);
+      return post;
+    })
+    .filter(Boolean) as typeof all;
+
+const studies = pick(STUDIES);
+const caseStudies = pick(CASE_STUDIES);
+const milestones = pick(MILESTONES);
+---
+<BaseLayout
+  title="Track Record"
+  description="Independent studies, in-field case studies, and regulatory milestones for the MuJo shoulder rehabilitation system. The 1.5 pilot and 2.0 KTP programme will extend this record."
+>
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Track record</p>
+      <h1>Independently studied. In use in NHS trusts, Olympic-track programmes, and MSK services.</h1>
+      <p class="lede">
+        The record below is retrospective — much of it dates from the founding-era MuJo programme.
+        It stands, and new evidence is being generated now through the Mujo 1.5 clinical pilot
+        and the Mujo 2.0 KTP programme.
+      </p>
+    </div>
   </section>
+
+  <section class="section container">
+    <header class="group-head">
+      <p class="eyebrow">01 &nbsp;·&nbsp; Studies &amp; independent evaluations</p>
+      <h2>Clinical and academic studies</h2>
+      <p>Feasibility work, published results, and independent evaluations of the MuJo system.</p>
+    </header>
+    <ul class="post-grid">
+      {studies.map((post) => <li><PostCard post={post} /></li>)}
+    </ul>
+  </section>
+
+  <section class="section container band">
+    <header class="group-head">
+      <p class="eyebrow">02 &nbsp;·&nbsp; In the field</p>
+      <h2>Case studies and installations</h2>
+      <p>Where the MuJo system is being used with real clinicians and athletes.</p>
+    </header>
+    <ul class="post-grid">
+      {caseStudies.map((post) => <li><PostCard post={post} /></li>)}
+    </ul>
+  </section>
+
+  <section class="section container">
+    <header class="group-head">
+      <p class="eyebrow">03 &nbsp;·&nbsp; Milestones</p>
+      <h2>Regulatory and programme milestones</h2>
+      <p>FDA listing, MHRA registration, granted patents, and Innovate UK funding.</p>
+    </header>
+    <ul class="post-grid post-grid-compact">
+      {milestones.map((post) => <li><PostCard post={post} /></li>)}
+    </ul>
+  </section>
+
+  {groupsMissing.length > 0 && (
+    <p style="color: crimson; padding: 2rem;">
+      Missing slugs (should not happen after full migration): {groupsMissing.join(', ')}
+    </p>
+  )}
 </BaseLayout>
 
 <style>
+  .hero {
+    padding-block: var(--space-16) var(--space-12);
+    background: linear-gradient(180deg, var(--color-subtle) 0%, var(--color-bg) 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero .container {
+    max-width: 56rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.75rem, 2vw + 1rem, 2.75rem);
+    margin-bottom: var(--space-4);
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    color: var(--color-brand-strong);
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--space-4);
+  }
+
+  .lede {
+    font-size: var(--fs-lg);
+    color: var(--color-muted);
+    max-width: 44rem;
+  }
+
+  .group-head {
+    max-width: 44rem;
+    margin-bottom: var(--space-8);
+  }
+
+  .group-head h2 {
+    font-size: var(--fs-2xl);
+    margin-bottom: var(--space-3);
+  }
+
+  .group-head p {
+    color: var(--color-muted);
+    margin: 0;
+  }
+
+  .band {
+    background: var(--color-subtle);
+    max-width: none;
+    padding-inline: 0;
+  }
+
+  .band > * {
+    max-width: var(--container-default);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
   .post-grid {
     list-style: none;
     padding: 0;
-    margin: var(--space-8) 0 0;
+    margin: 0;
     display: grid;
     gap: var(--space-6);
     grid-template-columns: 1fr;
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: 640px) {
     .post-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media (min-width: 1000px) {
+  @media (min-width: 960px) {
     .post-grid {
       grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 960px) {
+    .post-grid-compact {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 </style>

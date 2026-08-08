@@ -12,17 +12,22 @@ const evidence = (await getCollection('posts', ({ data }) => data.category === '
   description="Clinically grounded shoulder rehabilitation. Objective range-of-motion measurement, real-time visual feedback, and connected clinical data — used in NHS trusts and elite sports institutions."
 >
   <section class="hero">
-    <div class="container container-narrow">
-      <p class="eyebrow">Multiple Joint Fitness Systems</p>
-      <h1>Objective, connected shoulder rehabilitation.</h1>
-      <p class="lede">
-        MuJo builds musculoskeletal rehabilitation equipment for clinicians, athletes,
-        and researchers. Our patented multi-axial cam captures the full range of motion,
-        turning subjective assessment into clinical-grade data.
-      </p>
-      <div class="cta-row">
-        <a href="/technology/" class="button">The technology</a>
-        <a href="/evidence/" class="button button-outline">Clinical evidence</a>
+    <div class="hero-inner container">
+      <div class="hero-copy">
+        <p class="eyebrow">Multiple Joint Fitness Systems</p>
+        <h1>Objective, connected shoulder rehabilitation.</h1>
+        <p class="lede">
+          MuJo builds musculoskeletal rehabilitation equipment for clinicians, athletes,
+          and researchers. Our patented multi-axial cam captures the full range of motion,
+          turning subjective assessment into clinical-grade data.
+        </p>
+        <div class="cta-row">
+          <a href="/technology/" class="button">The technology</a>
+          <a href="/evidence/" class="button button-outline">Clinical evidence</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img src="/images/site/mujo-device-1.jpg" alt="MuJo shoulder rehabilitation device" width="960" height="720" />
       </div>
     </div>
   </section>
@@ -38,7 +43,7 @@ const evidence = (await getCollection('posts', ({ data }) => data.category === '
           Service, GB Weightlifting affiliates and evaluated by the University of Manchester
           and Coventry University. FDA-listed under product code IKK. UK MHRA registered.
         </p>
-        <p><a href="/evidence/" class="link">See the evidence &rarr;</a></p>
+        <p><a href="/evidence/" class="link">See the track record &rarr;</a></p>
       </div>
       <div>
         <p class="eyebrow">Where we are going</p>
@@ -84,8 +89,28 @@ const evidence = (await getCollection('posts', ({ data }) => data.category === '
 
 <style>
   .hero {
-    padding-block: var(--space-24) var(--space-16);
+    padding-block: var(--space-16);
     background: linear-gradient(180deg, var(--color-subtle) 0%, var(--color-bg) 100%);
+  }
+
+  .hero-inner {
+    display: grid;
+    gap: var(--space-12);
+    align-items: center;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 900px) {
+    .hero-inner {
+      grid-template-columns: 1.15fr 1fr;
+    }
+  }
+
+  .hero-media img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: 0 20px 40px -20px rgba(72, 69, 68, 0.35);
   }
 
   .eyebrow {

@@ -8,19 +8,28 @@ interface Props {
 const { post } = Astro.props;
 const { title, description, publishedDate, category, heroImage, archived } = post.data;
 const href = `/${category}/${post.id}/`;
+
+const eyebrow: Record<string, string> = {
+  evidence: 'Evidence',
+  resources: 'Resource',
+};
 ---
 <a href={href} class="card" aria-label={title}>
-  {heroImage && (
-    <div class="hero">
+  <div class="hero">
+    {heroImage ? (
       <img src={heroImage} alt="" loading="lazy" />
-    </div>
-  )}
+    ) : (
+      <div class="hero-fallback">
+        <span>{eyebrow[category] ?? category}</span>
+      </div>
+    )}
+  </div>
   <div class="body">
     <p class="meta">
-      <span class="cat">{category}</span>
+      <span class="cat">{eyebrow[category] ?? category}</span>
       {archived && <span class="archived">Archived</span>}
       <time datetime={publishedDate.toISOString()}>
-        {publishedDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })}
+        {publishedDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'short' })}
       </time>
     </p>
     <h2>{title}</h2>
@@ -39,24 +48,45 @@ const href = `/${category}/${post.id}/`;
     border-radius: var(--radius-md);
     overflow: hidden;
     background: var(--color-bg);
-    transition: border-color 120ms ease, transform 120ms ease;
+    transition: border-color 120ms ease, transform 120ms ease, box-shadow 120ms ease;
   }
 
   .card:hover {
     border-color: var(--color-brand);
     transform: translateY(-2px);
+    box-shadow: 0 6px 24px -12px rgba(0, 0, 0, 0.15);
   }
 
+  /* Every hero locks to the same height + aspect regardless of source image */
   .hero {
-    aspect-ratio: 16 / 9;
+    height: 200px;
     background: var(--color-subtle);
     overflow: hidden;
+    position: relative;
   }
 
   .hero img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .hero-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: linear-gradient(135deg, var(--brand-mint) 0%, var(--color-brand-strong) 100%);
+    color: var(--brand-white);
+  }
+
+  .hero-fallback span {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: var(--fw-bold);
   }
 
   .body {
@@ -72,42 +102,56 @@ const href = `/${category}/${post.id}/`;
     gap: var(--space-2);
     align-items: center;
     flex-wrap: wrap;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--color-muted);
-    margin: 0;
+    margin: 0 0 var(--space-2);
   }
 
   .cat {
     background: var(--color-brand);
-    color: #fff;
+    color: var(--brand-grey);
     padding: 2px 8px;
     border-radius: var(--radius-sm);
+    font-weight: var(--fw-bold);
   }
 
   .archived {
-    background: var(--color-accent);
-    color: #fff;
+    background: transparent;
+    color: var(--color-muted);
+    border: 1px solid var(--color-border);
     padding: 2px 8px;
     border-radius: var(--radius-sm);
   }
 
   time {
     margin-left: auto;
+    color: var(--color-muted);
+    font-weight: var(--fw-medium);
   }
 
   h2 {
-    color: var(--color-brand);
-    font-size: 1.15rem;
-    margin: var(--space-2) 0 0;
+    color: var(--color-fg);
+    font-size: 1.05rem;
     line-height: 1.35;
+    margin: 0;
+    /* Clamp title at 2 lines so cards stay tidy */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .desc {
     color: var(--color-muted);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.5;
-    margin: 0;
+    margin: var(--space-2) 0 0;
+    /* Clamp description at 3 lines for consistent card body height */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 </style>

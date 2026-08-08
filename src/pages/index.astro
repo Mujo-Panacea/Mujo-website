@@ -199,21 +199,22 @@ const evidence = (await getCollection('posts', ({ data }) => data.category === '
   }
 
   .cta-band {
-    background: var(--brand-grey);
-    color: var(--brand-white);
+    background: var(--color-subtle);
+    color: var(--color-fg);
     padding-block: var(--space-16);
     margin-top: var(--space-16);
     text-align: center;
+    border-block: 1px solid var(--color-border);
   }
 
   .cta-band h2 {
-    color: var(--brand-white);
+    color: var(--color-fg);
     font-size: var(--fs-2xl);
     margin-bottom: var(--space-4);
   }
 
   .cta-band p {
-    color: #d6d1cf;
+    color: var(--color-muted);
     max-width: 40rem;
     margin-inline: auto;
     margin-bottom: var(--space-8);

@@ -100,6 +100,15 @@ const { image, alt, flip = false, background = 'white' } = Astro.props;
     width: 100%;
     height: auto;
     display: block;
+    /* White backgrounds on product photos multiply out onto the panel colour
+       (works on all Media Row backgrounds — white, subtle, grey). */
+    mix-blend-mode: multiply;
+  }
+
+  /* On grey inverse bands, multiply would darken any near-white areas of a
+     natural photo further; keep the image untouched there. */
+  .bg-grey .media img {
+    mix-blend-mode: normal;
   }
 
   .text :global(h2) {

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
+import Partners from '../components/Partners.astro';
 import { getCollection } from 'astro:content';
 
 const evidence = (await getCollection('posts', ({ data }) => data.category === 'evidence'))
@@ -31,6 +32,8 @@ const evidence = (await getCollection('posts', ({ data }) => data.category === '
       </div>
     </div>
   </section>
+
+  <Partners />
 
   <section class="section container">
     <div class="two-up">

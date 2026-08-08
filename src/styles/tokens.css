@@ -101,9 +101,9 @@
   --radius-md: 8px;
   --radius-lg: 16px;
 
-  --container-narrow: 44rem;
-  --container-default: 64rem;
-  --container-wide: 80rem;
+  --container-narrow: 46rem;   /* prose / readable measure */
+  --container-default: 76rem;  /* standard page width (was 64rem — widened for larger screens) */
+  --container-wide: 90rem;     /* for wide media / dashboards */
 }
 
 /*

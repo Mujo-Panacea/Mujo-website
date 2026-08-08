@@ -8,19 +8,31 @@
  * </MediaRow>
  *
  * `flip` reverses image / text order.
- * `background` swaps in the subtle band colour (great for zig-zag rhythm).
+ * `background` sets the band colour:
+ *   - "white" (default): use for images that themselves have a white background
+ *     — e.g. product shots on white — so the image edges disappear into the panel
+ *   - "subtle": use for images with natural / photographic backgrounds — clinical
+ *     scenes, sports scenes — creates the zig-zag rhythm between rows
+ *   - "grey": inverted band for high-contrast product callouts
  */
 
 interface Props {
   image: string;
   alt: string;
   flip?: boolean;
-  background?: 'subtle' | 'none';
+  background?: 'white' | 'subtle' | 'grey';
 }
 
-const { image, alt, flip = false, background = 'none' } = Astro.props;
+const { image, alt, flip = false, background = 'white' } = Astro.props;
 ---
-<section class:list={['media-row', flip && 'flip', background === 'subtle' && 'band']}>
+<section
+  class:list={[
+    'media-row',
+    flip && 'flip',
+    background === 'subtle' && 'bg-subtle',
+    background === 'grey' && 'bg-grey',
+  ]}
+>
   <div class="row-inner">
     <div class="media">
       <img src={image} alt={alt} loading="lazy" />
@@ -35,10 +47,30 @@ const { image, alt, flip = false, background = 'none' } = Astro.props;
   .media-row {
     padding-block: var(--space-16);
     max-width: none;
+    /* Break out of any parent .container so the band goes edge-to-edge */
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
   }
 
-  .band {
+  .bg-subtle {
     background: var(--color-subtle);
+  }
+
+  .bg-grey {
+    background: var(--brand-grey);
+    color: var(--brand-white);
+  }
+
+  .bg-grey .text :global(h2),
+  .bg-grey .text :global(h3),
+  .bg-grey .text :global(strong) {
+    color: var(--brand-white);
+  }
+
+  .bg-grey .text :global(p),
+  .bg-grey .text :global(ul),
+  .bg-grey .text :global(ol) {
+    color: #d6d1cf;
   }
 
   .row-inner {
@@ -67,9 +99,7 @@ const { image, alt, flip = false, background = 'none' } = Astro.props;
   .media img {
     width: 100%;
     height: auto;
-    border-radius: var(--radius-md);
     display: block;
-    box-shadow: 0 10px 30px -12px rgba(72, 69, 68, 0.25);
   }
 
   .text :global(h2) {

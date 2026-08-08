@@ -12,6 +12,7 @@ const isActive = (href: string) =>
   href === '/' ? currentPath === '/' : currentPath.startsWith(href);
 ---
 <header class="site-header">
+  <div class="header-inner-wrap">
   <div class="container header-inner">
     <a href="/" class="brand" aria-label="MuJo — home">
       <img src="/images/brand/logo-grey.png" alt="MuJo" width="120" height="39" />
@@ -32,15 +33,22 @@ const isActive = (href: string) =>
     </nav>
     <a href="/contact/" class="button contact-cta">Contact</a>
   </div>
+  </div>
 </header>
 
 <style>
   .site-header {
-    border-bottom: 1px solid var(--color-border);
-    background: var(--color-bg);
     position: sticky;
     top: 0;
     z-index: 10;
+    background: var(--brand-grey);
+    color: var(--brand-white);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .header-inner-wrap {
+    /* Placeholder for a wider container if we ever need one; leaves room
+       for a future top-utility strip above the nav. */
   }
 
   .header-inner {
@@ -61,6 +69,8 @@ const isActive = (href: string) =>
     height: 2.25rem;
     width: auto;
     display: block;
+    /* Grey logo inverted to white to sit on the dark header */
+    filter: brightness(0) invert(1);
   }
 
   .nav-list {
@@ -73,23 +83,32 @@ const isActive = (href: string) =>
 
   .nav-list a {
     text-decoration: none;
-    color: var(--color-fg);
+    color: #d6d1cf;
     font-weight: var(--fw-medium);
+    padding-block: var(--space-2);
+    transition: color 120ms ease;
   }
 
   .nav-list a[aria-current='page'] {
-    color: var(--color-brand-strong);
-    text-decoration: underline;
-    text-underline-offset: 6px;
+    color: var(--brand-mint);
+    border-bottom: 2px solid var(--brand-mint);
   }
 
   .nav-list a:hover {
-    color: var(--color-brand-strong);
+    color: var(--brand-white);
   }
 
   .contact-cta {
-    padding: var(--space-2) var(--space-4);
+    padding: var(--space-2) var(--space-5);
     font-size: 0.95rem;
+    background: var(--brand-mint);
+    color: var(--brand-grey);
+  }
+
+  .contact-cta:hover {
+    background: var(--brand-white);
+    color: var(--brand-grey);
+    transform: none;
   }
 
   @media (min-width: 800px) {

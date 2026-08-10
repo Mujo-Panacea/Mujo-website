@@ -1,24 +1,61 @@
 # Mujo Website Rebuild — Execution Checklist
 
-**Version:** 0.2 · **Date:** August 2026 · **Status:** Active · **Owner:** Mujo Panacea Ltd
+**Version:** 0.4 · **Date:** August 2026 · **Status:** Active · **Owner:** Mujo Panacea Ltd
 
 **Purpose:** Ordered execution tracker for the website rebuild, aligned to Phases 1–5 in [requirements.md](requirements.md). Sitemap dispositions live in [sitemap.md](sitemap.md). Tick items as they complete; add new items in the relevant phase as they surface.
 
-## At a Glance — Current Status (2026-08-06)
+## At a Glance — Current Status (2026-08-10)
 
 | Phase | State |
 | --- | --- |
 | **Phase 1 — Content Audit & Sitemap** | ✔ Complete (closed 2026-07-31) |
 | **Phase 2 — Framework & Repo Setup** | ✔ Complete (scaffold + Netlify deploy done 2026-08-04) |
-| **Phase 3 — Content Migration + IA Reshape** | ⧗ Mechanical + IA reshape complete; **editorial content pending** on home, technology, about, athletes, investors, faqs, legal, team bios |
-| **Phase 4 — Deployment & Staging** | ⧗ Deployed to auto Netlify URL; waiting on 123-reg DNS credentials to attach `beta.mujofitness.com`; analytics + cookie banner still deferred |
+| **Phase 3 — Content Migration + IA Reshape + Brand + First-Draft Copy** | ⧗ Mechanical and structural complete; **content refinement + team bios + legal review pending** |
+| **Phase 4 — Deployment & Staging** | ⧗ Live on auto Netlify URL; blocked on 123-reg DNS credentials to attach `beta.mujofitness.com`; analytics + cookie banner + Netlify Forms notifications still deferred |
 | **Phase 5 — QA & Cutover** | ◯ Not started |
 
-**2026-08-06 IA reshape.** Gerard pushed for a sharper positioning: clinicians and investors first, athletes as a marketing surface, evidence and case studies consolidated. Top nav is now Technology · Evidence · For Athletes · Investors · About · Contact. `/blog` and `/news` retired; `/treatments` landing retired (condition pages kept for SEO). New `/athletes` and `/investors` pages exist as shells. 42 migrated posts became 18 evidence + 6 resources + 18 killed with 301s.
+## Pick up where we left off
 
-**Live now:** the site builds and deploys on Netlify at the auto-generated `*.netlify.app` URL. 42 pages after reshape, all routes 200, `noindex` still in place. `beta.mujofitness.com` swap happens once 123-reg access lands.
+Everything below is live in the repo (`main`) and deployed to Netlify on push. Latest commit at write time: `f7f577d Add mobile hamburger menu`.
 
-**What's blocking closure of Phase 3:** Gerard's editorial pass on the shell pages (marked in-page with `EDITORIAL REVIEW IN PROGRESS` banners) — home, technology, about, **athletes**, **investors**, faqs, legal, team bios; the brand kit from the previous owner; team bios / photos for the current four-person team; and image alt text for accessibility compliance.
+**Immediate next actions in priority order** — each item is either yours or mine.
+
+1. **Review the deploy on desktop and mobile.** *Yours.* Come back with any specific pages/sections that need adjustment.
+2. **Team bios + photos.** *Yours.* Send ~80–120 words per person (Gerard Kool CEO, Michael Sasserini CFO, Andre Santos CMO, Jeff McBride role-TBC) + a portrait photo each (any format, I'll process). Also confirm Jeff's actual role.
+3. **Editorial refinement pass on shell pages.** *Yours to review, mine to implement.* Every shell page (`/`, `/technology`, `/technology/dashboard-and-predictive-model`, `/investors`, `/athletes`, `/about`, `/faqs`) carries a first-draft I wrote using facts from Confluence and the WP source; each page has an `EDITORIAL REVIEW IN PROGRESS` banner. Read them, mark up what needs changing, send me the edits.
+4. **123-reg DNS credentials.** *Yours.* When they arrive from the previous owner, tell me and I'll walk you through attaching `beta.mujofitness.com` (5 min).
+5. **Netlify → Forms → Notifications.** *Yours.* In the Netlify dashboard, add an email notification pointing at `gerard@panacea.ws` so contact-form submissions reach you.
+6. **Legal review of `/privacy` and `/terms`.** *Yours (or your solicitor's).* The pages are shells with placeholder banners; need real content from a solicitor before cutover.
+7. **Regulatory review of medical-device claims.** *Yours (or CMO Andre).* Anything on `/technology`, `/technology/dashboard-and-predictive-model`, `/treatments/*`, and `/evidence/*` making a clinical claim needs an eye. I've kept language deliberately factual (FDA "listed", MHRA "registered", never "approved"; predictive model always future-tense) but a formal pass is required before publish.
+8. **Analytics + cookie banner decision.** *Yours.* Options: GA4, Plausible, Fathom, or defer to post-launch. Tell me and I'll wire in.
+9. **Image alt text for accessibility (WCAG 2.1 AA).** *Mine.* Migrated post images currently have blank `alt` attributes. One quick pass through all 89 posts once you've confirmed nothing else is moving.
+10. **Content-authoring `CONTRIBUTING.md`.** *Mine.* Short doc so anyone (you or a future editor) can add a blog post or update a page without ceremony.
+
+**Live on the deploy right now** — feature summary:
+
+- **Brand applied** end-to-end per the 2015 MuJo Brand Guidelines: Medical & Rehabilitation Mint on Grey; `/athletes` swaps to Elite Sports Blue; MuJo logo in header + footer; Proxima Nova wired via Adobe Fonts.
+- **Six-item top nav**: Technology · Evidence · For Athletes · Investors · About + Contact CTA. Header is dark grey with mint accents.
+- **Mobile hamburger menu** with dark dropdown panel, animated bars-to-X icon, Escape/outside-click/link-click to close, full keyboard accessibility.
+- **Home page**: hero with real device photo, partners strip (RNOH · EIOS · Manchester · Coventry · Innovate UK · Circle · HERC · IET) below the hero, two-up "In use today / Where we are going" section, latest three Evidence cards, and a pale CTA band at the bottom.
+- **Technology page**: alternating text/image bands using the `MediaRow` component — mechanism (patent US 8,821,357, Imperial origin), software (Mujo 1.5 Android + Bluetooth), regulatory posture, roadmap to hip/knee/spine.
+- **Dashboard and Predictive Model page**: deliberately future-tense throughout, SaMD framing, no specific model-performance claims.
+- **Track Record page** (URL still `/evidence/`): renamed and split into 01 Clinical Studies · 02 In the Field · 03 Milestones, with retrospective framing in the hero.
+- **Investors page**: market framing (US PT ~$30bn, ~7% CAGR), traction, IP, regulatory posture, team, Series A CTA.
+- **Athletes page**: anchored on real evidence (EIOS Lilleshall, Wasps Rugby, GB Weightlifting), regulatory-safe framing (no performance-enhancement claims).
+- **About + Team pages**: company story (Douglas Higgins 2006 invention → MuJo 2011 → MuJo Panacea today), five pillars, four placeholder team cards ready for Gerard's bios and photos.
+- **FAQs**: grouped questions with contact-us CTAs on every answer, factually correct regulatory phrasing.
+- **Contact page**: Netlify Forms wired, five-category routing dropdown, honeypot spam protection, `/contact/thanks/` landing page.
+- **Resources page** (footer link): six evergreen educational articles (anatomy series, home exercises, impingement exercises).
+- **Redirects**: `public/_redirects` covers every legacy WordPress URL — retired sections, killed posts, condition pages, WP-dated URL patterns. Wildcard fallbacks catch anything unmapped.
+
+**What's out on staging that will still change:**
+
+- Copy on every shell page is a first-draft awaiting your review — expect tone/length tweaks.
+- Team page has placeholder silhouette avatars and generic bios.
+- Home hero image is the legacy WordPress product shot; you flagged wanting to process this in Illustrator or find an alternative — the file path (`public/images/site/mujo-device-1.jpg`) is the only reference to swap.
+- No analytics loaded, no cookie banner.
+- `noindex` is on every page — Google can't crawl.
+- Legal pages are shells.
 
 ## Phase 1 — Content Audit & Sitemap
 
@@ -69,23 +106,24 @@
 
 ### Pages
 
-Every route below now has a live shell or migrated body on the deploy. Editorial rewrites still needed for items marked ⧗.
+Every route below now has a live shell, migrated body, or first-draft editorial copy on the deploy. Items marked ⧗ still need something from Gerard (editorial refinement, bios, legal review).
 
-- ⧗ `/technology` — shell + banner. Needs editorial rewrite reflecting Mujo 1.5 baseline and 2.0 KTP programme
-- ⧗ `/technology/dashboard-and-predictive-model` — shell + banner. Language must shift to "we are building"; regulatory-safe wording required
-- ⧗ `/treatments` — landing shell + banner. Needs editorial pass listing conditions and audiences
-- [x] `/treatments/frozen-shoulder` — content migrated + merged from both legacy sources. **Accuracy review needed** before Phase 5
-- [x] `/treatments/shoulder-impingement` — migrated + merged. **Accuracy review needed**
-- [x] `/treatments/shoulder-instability` — migrated. **Accuracy review needed**
-- [x] `/treatments/upper-back-and-neck-pain` — migrated + merged. **Accuracy review needed**
-- ⧗ `/faqs` — shell + banner. Needs full rewrite with contact-us CTAs on every answer
-- ⧗ `/about` — shell + banner. Needs rewrite for current company posture
-- ⧗ `/about/team` — shell + banner. Awaiting Gerard for bios + photos of Gerard Kool (CEO), Michael Sasserini (CFO), Andre Santos (CMO), Jeff McBride
+- ⧗ `/` (home) — first-draft copy live with device hero + partners strip + two-up + Evidence cards + CTA band. Refinement pass welcome
+- ⧗ `/technology` — first-draft copy with alternating MediaRow bands. Refinement pass welcome
+- ⧗ `/technology/dashboard-and-predictive-model` — first-draft, future-tense throughout; needs regulatory sign-off before publish
+- [x] `/treatments/frozen-shoulder` — migrated + merged from both legacy sources. Accuracy review pending
+- [x] `/treatments/shoulder-impingement` — migrated + merged. Accuracy review pending
+- [x] `/treatments/shoulder-instability` — migrated. Accuracy review pending
+- [x] `/treatments/upper-back-and-neck-pain` — migrated + merged. Accuracy review pending
+- ⧗ `/athletes` — first-draft copy with sports-blue variant + case-study anchors; refinement pass welcome. Regulatory review for performance-adjacent claims
+- ⧗ `/investors` — first-draft covering market, traction, IP, team, roadmap. Numbers to confirm before publish
+- ⧗ `/about` — first-draft company story + five pillars + team link
+- ⧗ `/about/team` — four placeholder cards (Gerard Kool CEO, Michael Sasserini CFO, Andre Santos CMO, Jeff McBride role-TBC). Awaiting bios + photos
+- ⧗ `/faqs` — first-draft grouped questions with contact-us CTAs. Refinement pass welcome
+- [x] `/contact` — Netlify Forms wired, five-category routing dropdown, `/contact/thanks/` landing
+- ⧗ `/privacy` — shell only. Solicitor-drafted copy required before cutover
+- ⧗ `/terms` — shell only. Solicitor-drafted copy required before cutover
 - [ ] Confirm the clinician "My Portal" destination URL (or agree on a "coming soon" holding page) before cutover — do not ship a broken link
-- [x] `/contact` — Netlify Forms wired, routes to gerard@panacea.ws once notifications configured in Netlify dashboard
-- ⧗ `/privacy` — shell + banner. Legal review required before cutover
-- ⧗ `/terms` — shell + banner. Legal review required before cutover
-- ⧗ `/` (home) — placeholder hero + latest posts. Needs full home-page copy rewrite
 - [x] Strip any residual "book a free taster" CTAs — none appear in migrated content
 
 ### Content indexes
@@ -107,17 +145,21 @@ Every route below now has a live shell or migrated body on the deploy. Editorial
 - [x] Enumerate images referenced by posts (89 images from 38 posts with heroes + body figures)
 - [x] Download images to `/public/images/posts/<slug>/` — 89/89 fetched via `scripts/download_media.sh`
 - [ ] Add descriptive `alt` text on every image (WCAG 2.1 AA) — currently blank alts on migrated images, needs a pass
-- [ ] Extract partner logos and place in `/public/images/partners/` (deferred until home + about editorial pass)
-- [ ] Extract and rehost the MUJO logo, favicon, and any brand-mark variants (deferred until brand kit arrives)
+- [x] Extract partner logos and place in `/public/images/partners/` — 8 logos downloaded, used in `Partners.astro` on home page (2026-08-08)
+- [x] Extract and rehost the MUJO logo, favicon, and any brand-mark variants — 1850×603 grey PNG in `/public/images/brand/logo-grey.png`; inverted via CSS on dark header + footer; mint favicon (2026-08-06)
+- [x] Curated legacy device / clinical / sports / dashboard imagery downloaded to `/public/images/site/` and placed on Home, Technology, Athletes, About, and Dashboard pages (2026-08-08)
 
 ### Manual rebuilds
 
 - [x] Contact form component (Netlify Forms) — `src/components/ContactForm.astro` + `/contact/` + `/contact/thanks/`
-- [ ] Configure Netlify → Forms → Notifications to email gerard@panacea.ws (needs Netlify dashboard access)
+- [ ] **Gerard: Configure Netlify → Forms → Notifications to email gerard@panacea.ws** (Netlify dashboard task)
 - [ ] Cookie banner (implementation TBD once analytics decision is made)
 - [ ] Any newsletter signup (only if requested — not currently on scope)
 - [x] Instagram feed — dropped; no equivalent added
 - [x] Twitter widget — dropped; API instability makes it not worth it
+- [x] Reusable `MediaRow` component for alternating text/image bands (2026-08-08)
+- [x] Reusable `Partners.astro` component for logo strips (2026-08-08)
+- [x] Mobile hamburger menu with accessible toggle (2026-08-10)
 
 **Exit criteria:** every page in the rationalised sitemap is present on staging with reviewed and approved content, images rehosted, and no `TODO` / `LOREM IPSUM` / placeholder markers.
 
@@ -208,3 +250,9 @@ Add dated entries here as decisions are made. Keep the entry short — the reaso
 * **2026-08-05** — Phase 3 mechanical migration complete. 42 WordPress posts → MDX (blog / news / evidence) with 89 hero + body images rehosted. 13 retained pages have shells or migrated bodies with `ReviewBanner` markers for editorial pass. Contact form wired to Netlify Forms. 301 redirect map covers every KILL / MERGE row in the sitemap. Production build clean — 60 pages built in ~5s. Awaiting Gerard's editorial pass on home, technology, about, faqs, and legal pages; awaiting brand kit and team bios/photos.
 * **2026-08-05** — Deployed to Netlify auto-URL. `beta.mujofitness.com` subdomain attachment paused pending 123-reg credentials from the previous-owner handover.
 * **2026-08-06** — **IA reshape.** New nav: Technology · Evidence · For Athletes · Investors · About · Contact. Retired `/blog`, `/news`, `/treatments` landing; condition pages under `/treatments/` retained for SEO. New `/athletes`, `/investors`, `/resources` pages as shells. 42 migrated posts → 18 evidence + 6 resources + 18 killed. `_redirects` rewritten to cover every URL move: surviving news → `/evidence/`, surviving educational blog → `/resources/`, sports-derivative → `/athletes/`, others to nearest section landing. Production build clean at 42 pages in ~3s.
+* **2026-08-06** — **Brand applied.** Sourced Gerard's MuJo Brand & Identity Guidelines (2015) from Drive. Palette locked in: Medical & Rehabilitation Mint `#78c4b7` on Grey `#484544` site-wide; Elite Sports Performance Blue `#222f5d` swapped in on `/athletes` via `data-brand="sports"`. Logo PNG placed in Header + Footer; favicon rebuilt in Mint. Proxima Nova stack front-of-queue.
+* **2026-08-07** — **Adobe Fonts Proxima Nova wired.** Kit `wgh8jyb` linked in `BaseLayout.astro`; Montserrat stand-in dropped. Kit served under Gerard's personal Adobe CC subscription; no domain lock so it works on localhost, netlify.app, beta.mujofitness.com, and mujofitness.com at cutover.
+* **2026-08-07** — **First-draft editorial content** on `/`, `/technology`, `/technology/dashboard-and-predictive-model`, `/investors`, `/athletes`, `/about`, `/faqs`. Regulatory-safe throughout — "FDA listed", "MHRA registered", never "approved"; predictive-model page future-tense throughout. ReviewBanner on every page reframed as "first-draft copy — Gerard to refine."
+* **2026-08-08** — **Layout iteration round 1.** PageLayout widened from 44rem to 64rem then 76rem. PostCard rebuilt for strict consistency (200px hero, `object-fit: cover`, line-clamped title and description). Descriptions on 17 posts cleaned of leading image markdown; 9 post bodies stripped of `mujofitness.com` links. Evidence page renamed **Track Record** and split into 01 Clinical Studies · 02 In the Field · 03 Milestones with retrospective hero framing. `MediaRow` component added for alternating text/image bands with panel-colour options (white / subtle / grey). Ten curated legacy images downloaded to `public/images/site/` and placed on Home, Technology, Athletes, About, and Dashboard pages. Partner-logo strip added below home hero — RNOH · EIOS · Manchester · Coventry · Innovate UK · Circle · HERC · IET, grayscale with hover-to-colour.
+* **2026-08-09** — **Header inverted.** Dark-grey header with white logo (grey PNG inverted via CSS filter), light nav labels, mint underline on the active item. Home hero panel becomes pure white so the device product-shot's white background blends seamlessly. Home CTA band flipped from dark to `--color-subtle` warm off-white with dark text.
+* **2026-08-10** — **Mobile hamburger menu.** Nav below 900px was previously hidden with no fallback — inaccessible. Added an accessible hamburger button, dark dropdown panel with all six nav items + Contact CTA, animated bars→X icon, closes on Escape / outside-click / link-click. Uses `[data-open]` attribute rather than a class to sidestep an Astro scoped-CSS descendant-selector edge case.

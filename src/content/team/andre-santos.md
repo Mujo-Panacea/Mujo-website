@@ -2,7 +2,7 @@
 name: "André Santos"
 role: "Chief Clinical Officer"
 order: 3
-photo: "/images/team/andre-santos.jpg"
+photo: "/images/team/andre-santos.png"
 summary: "Movement and strength specialist, physiotherapist, and founder of DreSports — bridging rehabilitation, performance training, and product development."
 ---
 

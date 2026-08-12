@@ -2,7 +2,7 @@
 name: "Michael Sasserini"
 role: "Chief Financial Officer"
 order: 2
-photo: "/images/team/michael-sasserini.jpg"
+photo: "/images/team/michael-sasserini.png"
 summary: "30+ years in investment banking and start-up CFO roles across MedTech, AdTech, and battery technology."
 ---
 

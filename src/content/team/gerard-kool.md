@@ -2,7 +2,7 @@
 name: "Gerard Kool"
 role: "Chief Executive Officer"
 order: 1
-photo: "/images/team/gerard-kool.jpg"
+photo: "/images/team/gerard-kool.png"
 summary: "25 years turning complex R&D into scalable, investable medical-device businesses."
 ---
 

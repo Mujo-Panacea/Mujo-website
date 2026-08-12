@@ -2,10 +2,8 @@
 name: "Michael Sasserini"
 role: "Chief Financial Officer"
 order: 2
-photo: "/images/team/placeholder-avatar.svg"
-summary: "Runs finance, investor relations, and commercial planning at MuJo Panacea."
+photo: "/images/team/michael-sasserini.jpg"
+summary: "30+ years in investment banking and start-up CFO roles across MedTech, AdTech, and battery technology."
 ---
 
-**Placeholder bio — to be supplied by Gerard.**
-
-A short paragraph (~80–120 words) covering: professional background (accounting / finance qualifications, prior roles), the area of the company owned (finance operations, investor reporting, commercial modelling for 1.5 and 2.0), and one line on the perspective they bring to the team.
+Michael has 30+ years of professional experience. He was a senior investment banker at **Fleming** and **JPMorgan Chase**, and specialises in start-ups and corporate restructuring, with CFO roles at **LioTech** (Li batteries), **Atlas Biomed** (MedTech), **AIDEM** (AdTech), and **Panacea** (MedTech). He holds an M.Sc. in Econometrics and was a Yale University Teaching Fellow in the Baltic States.

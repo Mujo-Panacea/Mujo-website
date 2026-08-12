@@ -1,11 +1,11 @@
 ---
-name: "Andre Santos"
-role: "Chief Medical Officer"
+name: "André Santos"
+role: "Chief Clinical Officer"
 order: 3
-photo: "/images/team/placeholder-avatar.svg"
-summary: "Clinical lead — oversees medical strategy, clinical evidence, and regulatory posture."
+photo: "/images/team/andre-santos.jpg"
+summary: "Movement and strength specialist, physiotherapist, and founder of DreSports — bridging rehabilitation, performance training, and product development."
 ---
 
-**Placeholder bio — to be supplied by Gerard.**
+André Santos is a movement and strength specialist, physiotherapist, and founder of **DreSports**. With extensive experience in rehabilitation, performance training, and exercise-based therapy, he has helped individuals ranging from injury-rehabilitation patients to high-performing athletes achieve sustainable physical development.
 
-A short paragraph (~80–120 words) covering: clinical background (specialty, institution, years of practice), why the MuJo approach appeals from a clinician's perspective, and the specific area they own (clinical investigation plan, evidence generation, MHRA/FDA-facing clinical claims, clinician-user representation on the KTP programme).
+Throughout his career, André has also contributed to the improvement and development of training and rehabilitation products through collaboration with equipment manufacturers and industry professionals. As Chief Clinical Officer, he helps ensure MuJo's technology enhances human movement, supporting effective training and rehabilitation without compromising natural biomechanics.

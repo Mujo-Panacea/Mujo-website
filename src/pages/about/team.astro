@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ReviewBanner from '../../components/ReviewBanner.astro';
 import { getCollection, render } from 'astro:content';
 
 const members = (await getCollection('team'))
@@ -17,10 +16,8 @@ const rendered = await Promise.all(
   <section class="section container">
     <header class="page-header">
       <h1>Team</h1>
-      <p class="lede">The people running MuJo Panacea. Full bios and photos land as Gerard provides them.</p>
+      <p class="lede">The people running MuJo Panacea.</p>
     </header>
-
-    <ReviewBanner>Placeholder bios and portrait silhouettes. Gerard to supply final copy (~80–120 words each) and photos. Jeff McBride's exact role also needs confirming.</ReviewBanner>
 
     <ul class="team-grid">
       {rendered.map((m) => (

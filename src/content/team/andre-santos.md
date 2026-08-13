@@ -6,6 +6,6 @@ photo: "/images/team/andre-santos.png"
 summary: "Movement and strength specialist, physiotherapist, and founder of DreSports — bridging rehabilitation, performance training, and product development."
 ---
 
-André Santos is a movement and strength specialist, physiotherapist, and founder of **DreSports**. With extensive experience in rehabilitation, performance training, and exercise-based therapy, he has helped individuals ranging from injury-rehabilitation patients to high-performing athletes achieve sustainable physical development.
+André Santos is a movement and strength specialist, physiotherapist, and founder of **DreSports**, with extensive experience in rehabilitation and performance training helping everyone from injury patients to elite athletes achieve sustainable physical development. He has also collaborated with equipment manufacturers to advance training and rehab products.
 
-Throughout his career, André has also contributed to the improvement and development of training and rehabilitation products through collaboration with equipment manufacturers and industry professionals. As Chief Clinical Officer, he helps ensure MuJo's technology enhances human movement, supporting effective training and rehabilitation without compromising natural biomechanics.
+As Chief Clinical Officer, André ensures MuJo's technology enhances human movement, supporting effective training without compromising natural biomechanics.

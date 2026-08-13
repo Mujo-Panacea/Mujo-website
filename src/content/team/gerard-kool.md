@@ -6,8 +6,8 @@ photo: "/images/team/gerard-kool.png"
 summary: "25 years turning complex R&D into scalable, investable medical-device businesses."
 ---
 
-Gerard is an experienced entrepreneur and operator with 25 years of experience delivering complex solutions across defence, finance, and healthcare sectors. He brings a multidisciplinary background covering product strategy, design, and development through to implementation, and as CEO of MuJo Panacea is leading the next generation of MSK rehabilitation technology.
+Gerard is an experienced entrepreneur and operator with 25 years delivering complex solutions across defence, finance, and medtech healthcare. His multidisciplinary background spans product strategy, design, and development through to implementation within regulated frameworks.
 
-Co-founder of **AOS** and **Sparca**, Gerard built AOS into an award-winning medical-device software provider in ophthalmics, overseeing the product strategy and regulatory roadmap that resulted in partnerships with **EssilorLuxottica, Lumenis,** and **Vision Express**. As co-founder of Sparca he delivered the successful porting of AOS medical-grade image analytics into the commercial mobile sector via **Qualcomm's ISV programme**.
+As Operations Director at **AOS** and **Sparca**, Gerard built AOS into an award-winning SaMD provider in the ophthalmic arena, overseeing product strategy, development, and the regulatory roadmap to secure partnerships with **EssilorLuxottica**, **Lumenis**, and **Vision Express**. At Sparca, he led the successful porting of AOS's medical-grade image analytics for the consumer mobile sector via **Qualcomm's ISV program**.
 
-Gerard is fluent in ISO quality standards and EU and US medical-device regulations, and specialises in building a focused, performing culture capable of turning complex R&D into scalable, investable businesses. He is now dedicated to driving MuJo Panacea's relaunch, redevelopment, and expansion — integrating predictive AI and assistive robotics to redefine the boundaries of physical therapy.
+Gerard is excited to lead the MuJo Panacea relaunch and expansion, integrating predictive AI and assistive robotics to redefine the boundaries of physical therapy and MSK rehabilitation technology.

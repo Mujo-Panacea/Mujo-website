@@ -31,6 +31,10 @@ Nothing in this file is a substitute for asking. When a page needs a fact that i
 | Origin of the technology | Mechanical engineer **Douglas Higgins** invented the fully-moving multi-axial cam in **2006**, originally to train the complex muscles of the spine. **MuJo** was founded in **2011** to apply the system to other commonly injured, high-cost areas of the body. | Verified (2015 Brand & Identity Guideline) |
 | Contact | gerard@panacea.ws; contact form routes via Netlify Forms | Verified (repo) |
 
+**Which entity owns the assets is an open question.** The APA names the buyer as **PANACEA WELLBEING & WEB SERVICES LIMITED, company number 13561243**, registered at 6 Clough Road, Halewood, Liverpool L26 6BE — signed by Jeff McBride. `investors.mdx` instead names **MuJo Panacea Limited, company number 17165284** as the entity raising. The APA contemplates a "New HoldCo" incorporated to acquire and hold the equity in the Buyer after completion, so 17165284 may well be that holdco — but the site should not imply the raising entity is the one that holds the patents unless it is. Confirm the group structure before the investor page names a company against the assets. The seller, Mujo Mechanics Limited (07506410), is now registered at 16 Blackfriars Street, Manchester M3 5BQ.
+
+**You may announce the acquisition.** APA clause 12.2 expressly permits the Buyer to announce its acquisition of the Business to employees, clients, customers and suppliers. Clause 12.1(b) separately bars either party from publicly disclosing *the terms of the agreement* without written consent. So: the acquisition story is publishable; the £2,000 purchase price and the rest of the deal terms are not.
+
 **Naming.** The 2015 brand mark is "MuJo™ Multiple Joint Fitness Systems". The current site uses "MUJO" and "MuJo Panacea" inconsistently. Match whatever the page you are editing already uses and stay consistent within that page; raise the sitewide inconsistency rather than silently changing it.
 
 ## 2. People
@@ -98,6 +102,7 @@ The legacy WordPress site describes the devices as **Class I** and sells assessm
 | English Institute of Sport | Structured use (2017); the athletes page references EIOS Lilleshall | Site-stated |
 | Sports users | Wasps Rugby, GB Weightlifting, European Tour Health & Performance Institute | Site-stated / Verified (the European Tour deployment is in KTP On a Page) — **get written permission before naming any of these as a customer in new copy** |
 | Partner logos currently on the home page | RNOH · EIOS · University of Manchester · Coventry University · Innovate UK · Circle · HERC · IET | Verified (repo) |
+| Contracted customer portfolio at acquisition | APA Schedule 3 lists four: **Stanmore Hospital** (RNOH), **Loughborough Hospital**, **Amstelveen Hospital** (Netherlands), **York University Hospital**. EIOS, Wasps, GB Weightlifting and CircleBedfordshire are **not** in the portfolio — they appear to be historic or non-contracted users. Note Amstelveen is a Dutch site the website never mentions. | Verified (APA Schedule 3) — **distinguish "contracted customer" from "has used it" in copy** |
 | Testimonials | Three practitioner testimonials exist on the legacy site (an occupational therapist, a rugby physiotherapy head, a private physiotherapist), all concerning shoulder rehabilitation | Verified they exist; **they are old, the individuals may have moved roles, and consent may have lapsed — re-confirm before reuse** |
 
 ## 6. Deployment and traction
@@ -109,20 +114,29 @@ The legacy WordPress site describes the devices as **Class I** and sells assessm
 | Stored fleet | A further 20 devices — 3 built and ready to ship, 17 awaiting assembly | Site-stated (`investors.mdx`) |
 | Current operating state | The installed units currently operate as mechanical machines; the 1.5 Android release reactivates their connected screen and data-capture layer | Verified |
 
-Note the "12 devices" and "six sites" figures are not in conflict — they measure different things — but copy should not blur them into "12 sites" or "six devices".
+**The device numbers do not reconcile, and this is the most serious thing on the investor page.** The APA — a legally warranted asset list — records at Schedule 1E: *devices on loan in the field at **Loughborough University and the Royal National Orthopaedic Hospital** (two sites); **2 sets assembled** in UK storage; **parts, frames and components for a further 10 sets**.*
+
+Against that, `investors.mdx` claims ~12 devices in the field across NHS trusts, orthopaedic hospitals, elite sport institutes and private MSK clinics, plus 20 more in storage (3 ready to ship, 17 awaiting assembly). The most likely reconciliation is that ~12 is the **total** device population — the figure the Mujo 1.5 brief uses for machines to re-enable — and that it has been read onto the *field* footprint. If so, the investor page materially overstates deployment.
+
+**Do not restate any deployment number until Gerard reconciles the APA asset list against the current fleet.** This is precisely the class of claim that gets checked in diligence, it is warranted in a signed agreement, and the two versions are not close. Also note "six practitioner sites" (KTP On a Page) sits between the two and has no supporting source.
 
 ## 7. Intellectual property
 
-**Treat this section as unverified and check it before it goes near an investor page.** Two different US patent numbers appear across MUJO's own materials:
+**Settled 19 August 2026** from the Asset Purchase Agreement (Google Drive → Mujo / Legal / APA, DocuSign envelope `3F603AF9-55A4-4DFF-8987-1FAB3B986635`, agreement dated 21 February 2026, completion 30 December 2025). Schedule 1, Asset List A:
 
-| Where | Number claimed |
-| --- | --- |
-| `investors.mdx` | **US 9,776,034**, *Exercise apparatus*, granted 2017 |
-| `technology.mdx` (per programme-control summary) | **US 8,821,357** |
+| Patent number | Description | Territory | Renewal date as listed in the APA |
+| --- | --- | --- | --- |
+| **9,776,034** | Improved Exercise Apparatus | US | 3 Oct 2025 |
+| **2683451** | Improved Exercise Apparatus | Europe (UK) | 30 Sep 2025 |
+| **ZL2012800227917** | Improved Exercise Apparatus | P.R. China | 7 Sep 2025 |
 
-Also stated in `investors.mdx`: corresponding protection in the UK/Europe (**EP 2683451**) and China (**ZL2012800227917**); patent family filed 2012, granted from 2017; all software developed and owned in-house.
+**US 9,776,034 is the correct number.** The `US 8,821,357` on `technology.mdx` is wrong and should be corrected. The invention title is *Improved Exercise Apparatus* — `investors.mdx` currently renders it as *Exercise apparatus*.
 
-`technology.mdx` additionally attributes an "Imperial origin" to the mechanism, which sits oddly against the brand guideline's account of Douglas Higgins inventing the cam in 2006. **Resolve both before publishing IP copy.** Patent numbers are the single easiest thing for a diligent investor to check and the most damaging thing to get wrong.
+**One thing still blocks publishing them.** All three renewal dates listed in the APA fall in September–October 2025 — *before* the 30 December 2025 completion date. Either they were renewed and the APA is listing the last or next-due date as at drafting, or they lapsed before transfer. **Confirm current status on the USPTO, UK IPO/EPO and CNIPA registers before any page claims live patent protection.** Intellectual Property was allocated £1,300 of the £2,000 purchase price — the majority of the consideration — so this is load-bearing, and a lapsed patent presented as granted protection is the single worst error available on an investor page.
+
+Software: `investors.mdx` states all software is developed and owned in-house. Note the APA lists the Android patient app as "Already shared. Not part of sale — listed here for completeness", and separately transfers the Online Web Portal and Database, and the Medical Device Technical File. Worth reconciling that wording with what was actually acquired.
+
+Still unresolved: the "Imperial origin" attribution on `technology.mdx`. The APA does not address it, and it sits oddly against the brand guideline's account of Douglas Higgins inventing the cam in 2006.
 
 ## 8. The KTP programme
 
@@ -150,12 +164,17 @@ Everything in this section is contested or unverified. Read section 10 before us
 
 ## 10. Open contradictions — do not use until resolved
 
-Raise these with Gerard rather than picking a side.
+Raise these with Gerard rather than picking a side. Ordered by how much damage each would do on an investor page.
 
-1. **Seed vs Series A.** `investors.mdx` says a **£1,000,000 seed round, 20% at a £4,000,000 post-money valuation**. Confluence consistently calls it the **Series A**. These are different stories to an investor. *(Separately — and more urgently — see the FSMA section of `claims-guardrails.md` on whether the amount and valuation can be on a public page at all.)*
-2. **US physical therapy market size.** `investors.mdx` says "~$50bn market (2024), forecast to grow at roughly 5% annually". The website programme-control page says "US PT ~$30bn, ~7% CAGR". Neither carries a source. A published market figure needs a named research house, a publication year and a link, or it should be cut.
-3. **Patent numbers.** US 9,776,034 vs US 8,821,357. See section 7.
-4. **André Santos's title.** Chief Clinical Officer (site) vs CMO (all regulatory documents). The regulatory pack matters here — if he is the designated PRRC candidate, the title on the website should match the title in the technical file.
-5. **Michael Sasserini vs Sassarini.**
-6. **Regulatory class in public-facing copy.** The site states MHRA Class I and FDA Class II (IKK) for the installed device; REG-002 describes the 1.5 baseline as MDR Class IIa. These may all be simultaneously true across three different regimes and two product configurations — but the site currently does not explain which applies to what, which reads as either confusion or overstatement. Needs one clear sentence per market, signed off by Andre.
-7. **"Imperial origin"** on the technology page vs the Douglas Higgins account in the brand guidelines.
+1. **Installed device count.** APA Schedule 1E (two field sites, 2 assembled sets, parts for 10) against `investors.mdx` (~12 in the field, 20 in storage). See §6. Blocking.
+2. **Patent renewal status.** Numbers are now settled; whether the three patents are still in force is not. See §7. Blocking.
+3. **Which entity holds the assets** — Panacea Wellbeing & Web Services Ltd (13561243, the APA buyer) vs MuJo Panacea Ltd (17165284, the entity named as raising). See §1.
+4. **Seed vs Series A.** `investors.mdx` says a £1,000,000 seed round, 20% at £4,000,000 post-money. Confluence consistently calls it the Series A. Different stories to an investor. *(Separately and more urgently, see the FSMA section of `claims-guardrails.md` on whether the amount and valuation can be on a public page at all.)*
+5. **US physical therapy market size.** `investors.mdx` says ~$50bn (2024) growing ~5% annually; the website programme-control page says ~$30bn, ~7% CAGR. Neither carries a source. A published figure needs a named research house, a publication year and a link, or it should be cut.
+6. **Which named users can be called customers.** APA Schedule 3 lists four contracted hospitals; the site names EIOS, Wasps, GB Weightlifting and CircleBedfordshire, none of which are in it. See §5.
+7. **Regulatory class in public-facing copy.** The site states MHRA Class I and FDA Class II (IKK) for the installed device; REG-002 describes the 1.5 baseline as MDR Class IIa. These may all be simultaneously true across three regimes and two configurations — but the site does not explain which applies to what, which reads as either confusion or overstatement. Needs one clear sentence per market, signed off by Andre.
+8. **André Santos's title.** Chief Clinical Officer (site) vs CMO (all regulatory documents). If he is the designated PRRC candidate, the website title should match the technical file.
+9. **Michael Sasserini vs Sassarini.**
+10. **"Imperial origin"** on the technology page vs the Douglas Higgins account in the brand guidelines.
+
+**Resolved, kept for the record:** patent *numbers* (19 Aug 2026, from the APA — US 9,776,034, EP/UK 2683451, CN ZL2012800227917; the `US 8,821,357` on `technology.mdx` is wrong).

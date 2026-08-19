@@ -10,7 +10,7 @@ After the mechanical migration, Gerard reviewed the shape and pushed for a sharp
 
 **Sections retired:** `/blog`, `/news`, `/treatments` (landing). `/faqs` demoted to footer.
 
-**New sections:** `/athletes`, `/investors`, `/resources` (footer link).
+**New sections:** `/athletes`, `/investors`, `/resources` (footer link), `/clinics`.
 
 **Posts reclassification:** the 42 migrated posts became 18 in `/evidence`, 6 in `/resources`, 18 killed. Killed items redirect to the nearest surviving section landing. Full disposition in the "Posts (42 total)" section below.
 
@@ -243,6 +243,7 @@ Live shape after the reshape:
   /technology/dashboard-and-predictive-model             (Future offering, roadmap language)
 /evidence                                                (Consolidated: Clinical Evidence + In Use / Recognition)
   /evidence/<slug>                                       (18 case-study + milestone posts)
+/clinics                                                 (For Clinics — MSK clinics, NHS MSK services, rehab gyms; CTA to contact)
 /athletes                                                (For Athletes — Wasps, EIOS, GB Weightlifting; CTA to contact)
 /investors                                               (Series A / KTP story; CTA to contact)
 /about                                                   (Company)
